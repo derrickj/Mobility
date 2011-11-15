@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4907EF491471F03600AA91D7 /* MobilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4907EF471471F03600AA91D7 /* MobilityViewController.m */; };
+		4907EF4A1471F03600AA91D7 /* MobilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4907EF471471F03600AA91D7 /* MobilityViewController.m */; };
+		4907EF4B1471F03600AA91D7 /* MobilityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4907EF481471F03600AA91D7 /* MobilityViewController.xib */; };
+		4907EF4C1471F03600AA91D7 /* MobilityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4907EF481471F03600AA91D7 /* MobilityViewController.xib */; };
 		49B205E51471E4DF00534F33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B205E41471E4DF00534F33 /* UIKit.framework */; };
 		49B205E71471E4DF00534F33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B205E61471E4DF00534F33 /* Foundation.framework */; };
 		49B205E91471E4DF00534F33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B205E81471E4DF00534F33 /* CoreGraphics.framework */; };
@@ -31,21 +35,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4907EF461471F03600AA91D7 /* MobilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobilityViewController.h; sourceTree = "<group>"; };
+		4907EF471471F03600AA91D7 /* MobilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobilityViewController.m; sourceTree = "<group>"; };
+		4907EF481471F03600AA91D7 /* MobilityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MobilityViewController.xib; sourceTree = "<group>"; };
 		49B205E01471E4DF00534F33 /* Mobility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mobility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B205E41471E4DF00534F33 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		49B205E61471E4DF00534F33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		49B205E81471E4DF00534F33 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		49B205EC1471E4DF00534F33 /* Mobility-Info.plist */ = {isa = PBXFileReference; path = "Mobility-Info.plist"; sourceTree = "<group>"; };
+		49B205EC1471E4DF00534F33 /* Mobility-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Mobility-Info.plist"; sourceTree = "<group>"; };
 		49B205EE1471E4DF00534F33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49B205F01471E4DF00534F33 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		49B205F21471E4DF00534F33 /* Mobility-Prefix.pch */ = {isa = PBXFileReference; path = "Mobility-Prefix.pch"; sourceTree = "<group>"; };
-		49B205F31471E4DF00534F33 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		49B205F21471E4DF00534F33 /* Mobility-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mobility-Prefix.pch"; sourceTree = "<group>"; };
+		49B205F31471E4DF00534F33 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		49B205F41471E4DF00534F33 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		49B205FB1471E4DF00534F33 /* MobilityTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobilityTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B205FC1471E4DF00534F33 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		49B206041471E4DF00534F33 /* MobilityTests-Info.plist */ = {isa = PBXFileReference; path = "MobilityTests-Info.plist"; sourceTree = "<group>"; };
+		49B206041471E4DF00534F33 /* MobilityTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MobilityTests-Info.plist"; sourceTree = "<group>"; };
 		49B206061471E4DF00534F33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		49B206081471E4DF00534F33 /* MobilityTests.h */ = {isa = PBXFileReference; path = MobilityTests.h; sourceTree = "<group>"; };
+		49B206081471E4DF00534F33 /* MobilityTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobilityTests.h; sourceTree = "<group>"; };
 		49B206091471E4DF00534F33 /* MobilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobilityTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,6 +116,9 @@
 				49B205F31471E4DF00534F33 /* AppDelegate.h */,
 				49B205F41471E4DF00534F33 /* AppDelegate.m */,
 				49B205EB1471E4DF00534F33 /* Supporting Files */,
+				4907EF461471F03600AA91D7 /* MobilityViewController.h */,
+				4907EF471471F03600AA91D7 /* MobilityViewController.m */,
+				4907EF481471F03600AA91D7 /* MobilityViewController.xib */,
 			);
 			path = Mobility;
 			sourceTree = "<group>";
@@ -214,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49B205EF1471E4DF00534F33 /* InfoPlist.strings in Resources */,
+				4907EF4B1471F03600AA91D7 /* MobilityViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49B206071471E4DF00534F33 /* InfoPlist.strings in Resources */,
+				4907EF4C1471F03600AA91D7 /* MobilityViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,6 +262,7 @@
 			files = (
 				49B205F11471E4DF00534F33 /* main.m in Sources */,
 				49B205F51471E4DF00534F33 /* AppDelegate.m in Sources */,
+				4907EF491471F03600AA91D7 /* MobilityViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49B2060A1471E4DF00534F33 /* MobilityTests.m in Sources */,
+				4907EF4A1471F03600AA91D7 /* MobilityViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +425,7 @@
 				49B2060F1471E4DF00534F33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49B206101471E4DF00534F33 /* Build configuration list for PBXNativeTarget "MobilityTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +434,7 @@
 				49B206121471E4DF00534F33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

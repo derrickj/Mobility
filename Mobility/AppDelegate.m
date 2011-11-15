@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "MobilityViewController.h"
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -23,6 +23,7 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = [[MobilityViewController alloc] initWithNibName:@"MobilityViewController" bundle:nil];
     [self.window makeKeyAndVisible];
     return YES;
 }
