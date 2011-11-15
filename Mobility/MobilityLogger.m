@@ -16,18 +16,25 @@
         locationManager = [[CLLocationManager alloc] init];
         locationManager.purpose = @"Mobility logs your location periodically to upload to an Ohmage server later";
         locationManager.delegate = self;
+
+        motionManager = [[CMMotionManager alloc] init];
     }
     return self;
 }
 
 - (void)dealloc {
     [locationManager release];
+    [motionManager release];
+    [super dealloc];
 }
 
 #pragma mark - API to callers
 - (void)startLoggingLocation {
     [locationManager startUpdatingLocation];
     [locationManager startMonitoringSignificantLocationChanges];
+
+    //FIXME: decouple accelerometer updating?
+    [motionManager startAccelerometerUpdates];
     NSLog(@"Started updating location");
 }
 
@@ -35,6 +42,9 @@
     NSLog(@"Stopped updating location");
     [locationManager stopUpdatingLocation];
     [locationManager stopMonitoringSignificantLocationChanges];
+
+    //FIXME: decouple accelerometer updating?
+    [motionManager stopAccelerometerUpdates];
 }
 
 #pragma mark - CLLocation Manager Delegate
@@ -43,7 +53,7 @@
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     //FIXME: Log using CoreData
-    NSLog(@"Got location update: %@", newLocation);
+    NSLog(@"Got location update: %@, with Acceleromter data: %@", newLocation, [motionManager accelerometerData]);
 }
 
 @end
