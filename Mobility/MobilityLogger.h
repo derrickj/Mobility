@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-@interface MobilityLogger : NSObject {
+@interface MobilityLogger : NSObject <CLLocationManagerDelegate> {
     CLLocationManager *manager;
 }
+
+- (void)startLoggingLocation;
+- (void)stopLoggingLocation;
 @end
