@@ -12,10 +12,8 @@
 @synthesize cell, loggingSwitch, logger;
 
 #pragma mark - Memory Management
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.logger = [[MobilityLogger alloc] init];
     }
     return self;
@@ -82,6 +80,14 @@
 #pragma mark - IBActions
 - (IBAction)userChangedLoggingSwitch:(id)sender {
     NSLog(@"user changed switch: %@", sender);
+    if ([sender class] != [UISwitch class]) {
+        return;
+    }
+    if (((UISwitch *)sender).isOn == YES) {
+        [self.logger startLoggingLocation];
+    } else {
+        [self.logger stopLoggingLocation];
+    }
 }
 
 #pragma mark - Table view data source
