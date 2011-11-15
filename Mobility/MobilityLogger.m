@@ -13,28 +13,28 @@
 #pragma mark - Memory Management
 - (id)init{
     if (self = [super init]) {
-        manager = [[CLLocationManager alloc] init];
-        manager.purpose = @"Mobility logs your location periodically to upload to an Ohmage server later";
-        manager.delegate = self;
+        locationManager = [[CLLocationManager alloc] init];
+        locationManager.purpose = @"Mobility logs your location periodically to upload to an Ohmage server later";
+        locationManager.delegate = self;
     }
     return self;
 }
 
 - (void)dealloc {
-    [manager release];
+    [locationManager release];
 }
 
 #pragma mark - API to callers
 - (void)startLoggingLocation {
-    [manager startUpdatingLocation];
-    [manager startMonitoringSignificantLocationChanges];
+    [locationManager startUpdatingLocation];
+    [locationManager startMonitoringSignificantLocationChanges];
     NSLog(@"Started updating location");
 }
 
 - (void)stopLoggingLocation {
     NSLog(@"Stopped updating location");
-    [manager stopUpdatingLocation];
-    [manager stopMonitoringSignificantLocationChanges];
+    [locationManager stopUpdatingLocation];
+    [locationManager stopMonitoringSignificantLocationChanges];
 }
 
 #pragma mark - CLLocation Manager Delegate

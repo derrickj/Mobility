@@ -17,6 +17,8 @@
 		492C6A801471FBD8002E7651 /* MobilityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A7E1471FBD8002E7651 /* MobilityLogger.m */; };
 		492C6A821471FDFB002E7651 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C6A811471FDFB002E7651 /* CoreLocation.framework */; };
 		492C6A831471FE36002E7651 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C6A811471FDFB002E7651 /* CoreLocation.framework */; };
+		4946B8BB14724B7600572463 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4946B8BA14724B7600572463 /* CoreMotion.framework */; };
+		4946B8BD14724B9400572463 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4946B8BA14724B7600572463 /* CoreMotion.framework */; };
 		49B205E51471E4DF00534F33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B205E41471E4DF00534F33 /* UIKit.framework */; };
 		49B205E71471E4DF00534F33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B205E61471E4DF00534F33 /* Foundation.framework */; };
 		49B205E91471E4DF00534F33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B205E81471E4DF00534F33 /* CoreGraphics.framework */; };
@@ -48,6 +50,7 @@
 		492C6A7D1471FBD8002E7651 /* MobilityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobilityLogger.h; sourceTree = "<group>"; };
 		492C6A7E1471FBD8002E7651 /* MobilityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobilityLogger.m; sourceTree = "<group>"; };
 		492C6A811471FDFB002E7651 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		4946B8BA14724B7600572463 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		49B205E01471E4DF00534F33 /* Mobility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mobility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B205E41471E4DF00534F33 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		49B205E61471E4DF00534F33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -75,6 +78,7 @@
 				49B205E71471E4DF00534F33 /* Foundation.framework in Frameworks */,
 				49B205E91471E4DF00534F33 /* CoreGraphics.framework in Frameworks */,
 				492C6A821471FDFB002E7651 /* CoreLocation.framework in Frameworks */,
+				4946B8BB14724B7600572463 /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +90,7 @@
 				49B205FE1471E4DF00534F33 /* UIKit.framework in Frameworks */,
 				49B205FF1471E4DF00534F33 /* Foundation.framework in Frameworks */,
 				492C6A831471FE36002E7651 /* CoreLocation.framework in Frameworks */,
+				4946B8BD14724B9400572463 /* CoreMotion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +100,7 @@
 		49B205D51471E4DF00534F33 = {
 			isa = PBXGroup;
 			children = (
+				4946B8BA14724B7600572463 /* CoreMotion.framework */,
 				49B205EA1471E4DF00534F33 /* Mobility */,
 				49B206021471E4DF00534F33 /* MobilityTests */,
 				49B205E31471E4DF00534F33 /* Frameworks */,
