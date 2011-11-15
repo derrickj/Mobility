@@ -11,6 +11,12 @@
 		4907EF4A1471F03600AA91D7 /* MobilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4907EF471471F03600AA91D7 /* MobilityViewController.m */; };
 		4907EF4B1471F03600AA91D7 /* MobilityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4907EF481471F03600AA91D7 /* MobilityViewController.xib */; };
 		4907EF4C1471F03600AA91D7 /* MobilityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4907EF481471F03600AA91D7 /* MobilityViewController.xib */; };
+		492C6A7A1471FA10002E7651 /* MobilityDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A781471FA10002E7651 /* MobilityDataModel.xcdatamodeld */; };
+		492C6A7B1471FA10002E7651 /* MobilityDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A781471FA10002E7651 /* MobilityDataModel.xcdatamodeld */; };
+		492C6A7F1471FBD8002E7651 /* MobilityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A7E1471FBD8002E7651 /* MobilityLogger.m */; };
+		492C6A801471FBD8002E7651 /* MobilityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A7E1471FBD8002E7651 /* MobilityLogger.m */; };
+		492C6A821471FDFB002E7651 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C6A811471FDFB002E7651 /* CoreLocation.framework */; };
+		492C6A831471FE36002E7651 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C6A811471FDFB002E7651 /* CoreLocation.framework */; };
 		49B205E51471E4DF00534F33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B205E41471E4DF00534F33 /* UIKit.framework */; };
 		49B205E71471E4DF00534F33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B205E61471E4DF00534F33 /* Foundation.framework */; };
 		49B205E91471E4DF00534F33 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B205E81471E4DF00534F33 /* CoreGraphics.framework */; };
@@ -38,6 +44,10 @@
 		4907EF461471F03600AA91D7 /* MobilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobilityViewController.h; sourceTree = "<group>"; };
 		4907EF471471F03600AA91D7 /* MobilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobilityViewController.m; sourceTree = "<group>"; };
 		4907EF481471F03600AA91D7 /* MobilityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MobilityViewController.xib; sourceTree = "<group>"; };
+		492C6A791471FA10002E7651 /* MobilityDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MobilityDataModel.xcdatamodel; sourceTree = "<group>"; };
+		492C6A7D1471FBD8002E7651 /* MobilityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobilityLogger.h; sourceTree = "<group>"; };
+		492C6A7E1471FBD8002E7651 /* MobilityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobilityLogger.m; sourceTree = "<group>"; };
+		492C6A811471FDFB002E7651 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		49B205E01471E4DF00534F33 /* Mobility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mobility.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B205E41471E4DF00534F33 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		49B205E61471E4DF00534F33 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,6 +74,7 @@
 				49B205E51471E4DF00534F33 /* UIKit.framework in Frameworks */,
 				49B205E71471E4DF00534F33 /* Foundation.framework in Frameworks */,
 				49B205E91471E4DF00534F33 /* CoreGraphics.framework in Frameworks */,
+				492C6A821471FDFB002E7651 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +85,7 @@
 				49B205FD1471E4DF00534F33 /* SenTestingKit.framework in Frameworks */,
 				49B205FE1471E4DF00534F33 /* UIKit.framework in Frameworks */,
 				49B205FF1471E4DF00534F33 /* Foundation.framework in Frameworks */,
+				492C6A831471FE36002E7651 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +114,7 @@
 		49B205E31471E4DF00534F33 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				492C6A811471FDFB002E7651 /* CoreLocation.framework */,
 				49B205E41471E4DF00534F33 /* UIKit.framework */,
 				49B205E61471E4DF00534F33 /* Foundation.framework */,
 				49B205E81471E4DF00534F33 /* CoreGraphics.framework */,
@@ -119,6 +132,8 @@
 				4907EF461471F03600AA91D7 /* MobilityViewController.h */,
 				4907EF471471F03600AA91D7 /* MobilityViewController.m */,
 				4907EF481471F03600AA91D7 /* MobilityViewController.xib */,
+				492C6A7D1471FBD8002E7651 /* MobilityLogger.h */,
+				492C6A7E1471FBD8002E7651 /* MobilityLogger.m */,
 			);
 			path = Mobility;
 			sourceTree = "<group>";
@@ -130,6 +145,7 @@
 				49B205ED1471E4DF00534F33 /* InfoPlist.strings */,
 				49B205F01471E4DF00534F33 /* main.m */,
 				49B205F21471E4DF00534F33 /* Mobility-Prefix.pch */,
+				492C6A781471FA10002E7651 /* MobilityDataModel.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -263,6 +279,8 @@
 				49B205F11471E4DF00534F33 /* main.m in Sources */,
 				49B205F51471E4DF00534F33 /* AppDelegate.m in Sources */,
 				4907EF491471F03600AA91D7 /* MobilityViewController.m in Sources */,
+				492C6A7A1471FA10002E7651 /* MobilityDataModel.xcdatamodeld in Sources */,
+				492C6A7F1471FBD8002E7651 /* MobilityLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +290,8 @@
 			files = (
 				49B2060A1471E4DF00534F33 /* MobilityTests.m in Sources */,
 				4907EF4A1471F03600AA91D7 /* MobilityViewController.m in Sources */,
+				492C6A7B1471FA10002E7651 /* MobilityDataModel.xcdatamodeld in Sources */,
+				492C6A801471FBD8002E7651 /* MobilityLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +457,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		492C6A781471FA10002E7651 /* MobilityDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				492C6A791471FA10002E7651 /* MobilityDataModel.xcdatamodel */,
+			);
+			currentVersion = 492C6A791471FA10002E7651 /* MobilityDataModel.xcdatamodel */;
+			path = MobilityDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 49B205D71471E4DF00534F33 /* Project object */;
 }

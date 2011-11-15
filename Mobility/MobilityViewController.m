@@ -9,12 +9,14 @@
 #import "MobilityViewController.h"
 
 @implementation MobilityViewController
-@synthesize cell, loggingSwitch;
+@synthesize cell, loggingSwitch, logger;
+
+#pragma mark - Memory Management
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        self.logger = [[MobilityLogger alloc] init];
     }
     return self;
 }
@@ -25,6 +27,10 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+- (void)dealloc {
+    self.logger = nil;
 }
 
 #pragma mark - View lifecycle
