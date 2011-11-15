@@ -11,4 +11,6 @@
 @interface MobilityViewController : UITableViewController
 @property(nonatomic, retain) IBOutlet UITableViewCell *cell;
 @property(nonatomic, retain) IBOutlet UISwitch *loggingSwitch;
+
+- (IBAction)userChangedLoggingSwitch:(id)sender;
 @end

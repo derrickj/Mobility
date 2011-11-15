@@ -73,6 +73,11 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - IBActions
+- (IBAction)userChangedLoggingSwitch:(id)sender {
+    NSLog(@"user changed switch: %@", sender);
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
