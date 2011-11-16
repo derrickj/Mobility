@@ -17,7 +17,6 @@
     
     NSManagedObjectContext *_managedObjectContext;
     NSManagedObjectModel *_managedObjectModel;
-    NSPersistentStoreCoordinator *_coordinator;
 }
 
 - (void)startLoggingLocation;
@@ -25,5 +24,4 @@
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @end

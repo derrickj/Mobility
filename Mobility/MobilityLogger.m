@@ -13,7 +13,6 @@
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _coordinator;
 
 
 
@@ -33,6 +32,9 @@
 - (void)dealloc {
     [locationManager release];
     [motionManager release];
+
+    [_managedObjectContext release];
+    [_managedObjectModel release];
     [super dealloc];
 }
 
@@ -103,6 +105,7 @@
     _managedObjectContext = [[NSManagedObjectContext alloc] init];
     NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    [coordinator release];
     
     NSURL *storeURL = [NSURL fileURLWithPath:[[MobilityLogger documentsDirectory] stringByAppendingPathComponent:@"mobility.sqlite"]];
     NSError *error = nil;
