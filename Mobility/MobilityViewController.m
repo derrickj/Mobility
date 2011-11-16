@@ -14,7 +14,7 @@
 #pragma mark - Memory Management
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.logger = [[MobilityLogger alloc] init];
+        self.logger = [[[MobilityLogger alloc] init] autorelease];
     }
     return self;
 }

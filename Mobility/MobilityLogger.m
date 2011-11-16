@@ -71,6 +71,7 @@
     if (dataPoint == nil)
         abort();
     [dataPoint setValue:[[NSNumber numberWithDouble:newLocation.coordinate.latitude] stringValue]forKey:@"latitude"];
+    [dataPoint release];
     
     NSError *error = nil;
     [self.managedObjectContext save:&error];
