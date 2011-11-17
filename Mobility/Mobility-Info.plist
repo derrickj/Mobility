@@ -47,5 +47,16 @@
 	<array>
 		<string>location</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>edu.ucla.cens.Mobility</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>mobility</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>
