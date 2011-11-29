@@ -25,6 +25,16 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = [[[MobilityViewController alloc] initWithNibName:@"MobilityViewController" bundle:nil] autorelease];
     [self.window makeKeyAndVisible];
+
+    NSURL *url = [launchOptions valueForKey:UIApplicationLaunchOptionsURLKey];
+    if (url) {
+        //FIXME: validate url!!! SECURITY RISK IF NOT CAREFUL
+        UILocalNotification *note = [[UILocalNotification alloc] init];
+        note.alertBody = [NSString stringWithFormat:@"Launched with: %@", url];
+        [application presentLocalNotificationNow:note];
+        [note release];
+    }
+
     return YES;
 }
 
@@ -65,6 +75,15 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+}
+
+#pragma mark - URL Schemes
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    NSString *msg = [NSString stringWithFormat:@"Launched with: %@", url];
+    UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"url" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [view show];
+    [view release];
+    return YES;
 }
 
 @end
