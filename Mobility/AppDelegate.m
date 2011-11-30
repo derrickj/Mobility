@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MobilityViewController.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -83,6 +84,32 @@
     UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"url" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [view show];
     [view release];
+
+    // write data to a file and present it.
+   //NSURL *fileURL = [NSURL fileURLWithPathComponents:[NSArray arrayWithObjects:NSTemporaryDirectory(),@"data.txt", nil]];
+
+   // NSURL *fileURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"data.txt"]];
+    NSURL *fileURL = [[NSURL alloc] initWithScheme:@"file" host:nil path:[NSDocumentDirectory stringByAppendingPathComponent:@"data.txt"]];
+    NSError *error = nil;
+    [[NSURL description] writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    if (error) {
+        NSLog(@"error writing file: %@", error);
+        abort();
+    }
+    
+    // wrote data needed to file. now let's ask user to open it in another app.
+    UIDocumentInteractionController *controller = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
+    controller.UTI = @"public.plain-text";
+    controller.delegate = self;
+    
+    NSLog(@"file URL: %@", fileURL);
+    UIView *currentView = self.window;
+    
+    
+    if (![controller presentOpenInMenuFromRect:CGRectZero inView:currentView animated:YES]) {
+        perror("\n\nWTF");
+        abort();
+    }
     return YES;
 }
 
