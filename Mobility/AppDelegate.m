@@ -78,6 +78,11 @@
      */
 }
 
+#pragma mark - UIDocumentInteractionControllerDelegate
+- (void) documentInteractionController: (UIDocumentInteractionController *) controller didEndSendingToApplication: (NSString *) application {
+    [controller release];
+}
+
 #pragma mark - URL Schemes
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
  
