@@ -80,16 +80,10 @@
 
 #pragma mark - URL Schemes
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    NSString *msg = [NSString stringWithFormat:@"Launched with: %@", url];
-    UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"url" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [view show];
-    [view release];
-
+ 
     // write data to a file and present it.
-   //NSURL *fileURL = [NSURL fileURLWithPathComponents:[NSArray arrayWithObjects:NSTemporaryDirectory(),@"data.txt", nil]];
+    NSURL *fileURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"data.txt"]];
 
-   // NSURL *fileURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"data.txt"]];
-    NSURL *fileURL = [[NSURL alloc] initWithScheme:@"file" host:nil path:[NSDocumentDirectory stringByAppendingPathComponent:@"data.txt"]];
     NSError *error = nil;
     [[NSURL description] writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
     if (error) {
@@ -99,15 +93,15 @@
     
     // wrote data needed to file. now let's ask user to open it in another app.
     UIDocumentInteractionController *controller = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
+    [controller retain];
     controller.UTI = @"public.plain-text";
     controller.delegate = self;
+
+    UIView *currentView = self.window.rootViewController.view;
+    CGRect rect = CGRectMake(40, 40, 200, 400);
     
-    NSLog(@"file URL: %@", fileURL);
-    UIView *currentView = self.window;
-    
-    
-    if (![controller presentOpenInMenuFromRect:CGRectZero inView:currentView animated:YES]) {
-        perror("\n\nWTF");
+    if (![controller presentOpenInMenuFromRect:rect inView:currentView animated:YES]) {
+        NSLog(@"Failed to open doc in another app");
         abort();
     }
     return YES;
