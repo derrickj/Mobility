@@ -116,12 +116,12 @@
     if (dataPoint == nil)
         abort();
 
-    dataPoint.latitude = [[NSNumber numberWithDouble:newLocation.coordinate.latitude] stringValue];
-    dataPoint.longitude = [[NSNumber numberWithDouble:newLocation.coordinate.longitude] stringValue];
-    dataPoint.accuracy = [[NSNumber numberWithDouble:newLocation.horizontalAccuracy] stringValue];
+    dataPoint.latitude = [NSNumber numberWithDouble:newLocation.coordinate.latitude];
+    dataPoint.longitude = [NSNumber numberWithDouble:newLocation.coordinate.longitude];
+    dataPoint.accuracy = [NSNumber numberWithDouble:newLocation.horizontalAccuracy];
     dataPoint.timestamp = newLocation.timestamp;
     [dataPoint release];
-    
+
     NSError *error = nil;
     [self.managedObjectContext save:&error];
     if (error) {
