@@ -116,6 +116,9 @@
     if (dataPoint == nil)
         abort();
     [dataPoint setValue:[[NSNumber numberWithDouble:newLocation.coordinate.latitude] stringValue]forKey:@"latitude"];
+    [dataPoint setValue:[[NSNumber numberWithDouble:newLocation.coordinate.longitude] stringValue] forKey:@"longitude"];
+    [dataPoint setValue:[[NSNumber numberWithDouble:newLocation.horizontalAccuracy] stringValue] forKey:@"accuracy"];
+    [dataPoint setValue:newLocation.timestamp forKey:@"timestamp"];
     [dataPoint release];
     
     NSError *error = nil;
