@@ -57,6 +57,51 @@
     [motionManager stopAccelerometerUpdates];
 }
 
+- (NSString *)jsonRepresentationForDB {
+    NSMutableArray *dataPointList = [NSMutableArray array];
+    NSFetchRequest *fetchReq = [NSFetchRequest fetchRequestWithEntityName:@"DataPoint"];
+    NSError *error = nil;
+    NSArray *rawDataPoints = [self.managedObjectContext executeFetchRequest:fetchReq error:&error];
+    if (error) {
+        NSLog(@"%@", error);
+    }
+    
+    for (NSManagedObject *d in rawDataPoints) {
+        NSLog(@"datapoint: %@", [d valueForKey:@"latitude"]);
+        NSMutableDictionary *packet = [NSMutableDictionary dictionary];
+        NSMutableDictionary *location = [NSMutableDictionary dictionary];
+        NSDate *date = (NSDate *)[d valueForKey:@"timestamp"];
+        int timeInMillis = [date timeIntervalSince1970] * 1000;
+        
+        
+        
+        [packet setValue:[NSNumber numberWithInt:timeInMillis] forKey:@"time"];
+        [packet setValue:@"America/LosAngeles" forKey:@"timezone"]; //FIXME: don't use hardcoded timezone
+        
+        [location setValue:[d valueForKey:@"latitude"]forKey:@"latitude"];
+        [location setValue:[d valueForKey:@"longitude"] forKey:@"longitude"];
+        [location setValue:[d valueForKey:@"accuracy"] forKey:@"accuracy"];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
+        NSLog(@"Date format: %@", [dateFormatter stringFromDate:date]);
+        [location setValue:[dateFormatter stringFromDate:date] forKey:@"timestamp"];
+        [dateFormatter release];
+        
+        [packet setValue:location forKey:@"location"];
+        
+        [dataPointList addObject:packet];
+    }
+    NSLog(@"valid Json: %d", [NSJSONSerialization isValidJSONObject:dataPointList]);
+    error = nil;
+    NSData *JSONData = [NSJSONSerialization dataWithJSONObject:dataPointList options:0 error:&error];
+    if (error) {
+        NSLog(@"derror: %@", error);
+    }
+    NSString *JSONString = [[NSString alloc] initWithData:JSONData encoding:NSUTF8StringEncoding];
+    NSLog(@"SJONS data: %@", JSONString);
+    return [JSONString autorelease];
+}
+
 #pragma mark - CLLocation Manager Delegate
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"location manager failed: %@", error);

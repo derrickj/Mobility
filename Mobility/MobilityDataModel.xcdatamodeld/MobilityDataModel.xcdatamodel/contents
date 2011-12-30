@@ -5,8 +5,9 @@
         <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="speed" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DataPoint" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="DataPoint" positionX="160" positionY="192" width="128" height="120"/>
     </elements>
 </model>

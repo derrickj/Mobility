@@ -21,6 +21,7 @@
 
 - (void)startLoggingLocation;
 - (void)stopLoggingLocation;
+- (NSString *)jsonRepresentationForDB;
 
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;

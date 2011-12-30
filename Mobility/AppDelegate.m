@@ -90,7 +90,9 @@
     NSURL *fileURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"data.txt"]];
 
     NSError *error = nil;
-    [[NSURL description] writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    MobilityLogger *logger = [[MobilityLogger alloc] init];
+    [[logger jsonRepresentationForDB] writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    [logger release];
     if (error) {
         NSLog(@"error writing file: %@", error);
         abort();
