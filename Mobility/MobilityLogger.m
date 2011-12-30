@@ -7,7 +7,7 @@
 //
 
 #import "MobilityLogger.h"
-
+#import "DataPoint.h"
 
 @implementation MobilityLogger
 
@@ -66,11 +66,11 @@
         NSLog(@"%@", error);
     }
     
-    for (NSManagedObject *d in rawDataPoints) {
-        NSLog(@"datapoint: %@", [d valueForKey:@"latitude"]);
+    for (DataPoint *d in rawDataPoints) {
+        NSLog(@"datapoint: %@", d.latitude);
         NSMutableDictionary *packet = [NSMutableDictionary dictionary];
         NSMutableDictionary *location = [NSMutableDictionary dictionary];
-        NSDate *date = (NSDate *)[d valueForKey:@"timestamp"];
+        NSDate *date = d.timestamp;
         int timeInMillis = [date timeIntervalSince1970] * 1000;
         
         
@@ -78,9 +78,9 @@
         [packet setValue:[NSNumber numberWithInt:timeInMillis] forKey:@"time"];
         [packet setValue:@"America/LosAngeles" forKey:@"timezone"]; //FIXME: don't use hardcoded timezone
         
-        [location setValue:[d valueForKey:@"latitude"]forKey:@"latitude"];
-        [location setValue:[d valueForKey:@"longitude"] forKey:@"longitude"];
-        [location setValue:[d valueForKey:@"accuracy"] forKey:@"accuracy"];
+        [location setValue:d.latitude forKey:@"latitude"];
+        [location setValue:d.longitude forKey:@"longitude"];
+        [location setValue:d.accuracy forKey:@"accuracy"];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
         NSLog(@"Date format: %@", [dateFormatter stringFromDate:date]);
@@ -112,13 +112,14 @@
     
     NSEntityDescription *entity = [[self.managedObjectModel entitiesByName] valueForKey:@"DataPoint"];
 
-    NSManagedObject *dataPoint = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    DataPoint *dataPoint = [[DataPoint alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
     if (dataPoint == nil)
         abort();
-    [dataPoint setValue:[[NSNumber numberWithDouble:newLocation.coordinate.latitude] stringValue]forKey:@"latitude"];
-    [dataPoint setValue:[[NSNumber numberWithDouble:newLocation.coordinate.longitude] stringValue] forKey:@"longitude"];
-    [dataPoint setValue:[[NSNumber numberWithDouble:newLocation.horizontalAccuracy] stringValue] forKey:@"accuracy"];
-    [dataPoint setValue:newLocation.timestamp forKey:@"timestamp"];
+
+    dataPoint.latitude = [[NSNumber numberWithDouble:newLocation.coordinate.latitude] stringValue];
+    dataPoint.longitude = [[NSNumber numberWithDouble:newLocation.coordinate.longitude] stringValue];
+    dataPoint.accuracy = [[NSNumber numberWithDouble:newLocation.horizontalAccuracy] stringValue];
+    dataPoint.timestamp = newLocation.timestamp;
     [dataPoint release];
     
     NSError *error = nil;

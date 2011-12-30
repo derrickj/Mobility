@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490118B914AE76AD00C143D6 /* DataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 490118B814AE76AD00C143D6 /* DataPoint.m */; };
 		4907EF491471F03600AA91D7 /* MobilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4907EF471471F03600AA91D7 /* MobilityViewController.m */; };
 		4907EF4A1471F03600AA91D7 /* MobilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4907EF471471F03600AA91D7 /* MobilityViewController.m */; };
 		4907EF4B1471F03600AA91D7 /* MobilityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4907EF481471F03600AA91D7 /* MobilityViewController.xib */; };
@@ -45,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		490118B714AE76AD00C143D6 /* DataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataPoint.h; sourceTree = "<group>"; };
+		490118B814AE76AD00C143D6 /* DataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataPoint.m; sourceTree = "<group>"; };
 		4907EF461471F03600AA91D7 /* MobilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobilityViewController.h; sourceTree = "<group>"; };
 		4907EF471471F03600AA91D7 /* MobilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobilityViewController.m; sourceTree = "<group>"; };
 		4907EF481471F03600AA91D7 /* MobilityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MobilityViewController.xib; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 				4907EF481471F03600AA91D7 /* MobilityViewController.xib */,
 				492C6A7D1471FBD8002E7651 /* MobilityLogger.h */,
 				492C6A7E1471FBD8002E7651 /* MobilityLogger.m */,
+				490118B714AE76AD00C143D6 /* DataPoint.h */,
+				490118B814AE76AD00C143D6 /* DataPoint.m */,
 			);
 			path = Mobility;
 			sourceTree = "<group>";
@@ -293,6 +298,7 @@
 				4907EF491471F03600AA91D7 /* MobilityViewController.m in Sources */,
 				492C6A7A1471FA10002E7651 /* MobilityDataModel.xcdatamodeld in Sources */,
 				492C6A7F1471FBD8002E7651 /* MobilityLogger.m in Sources */,
+				490118B914AE76AD00C143D6 /* DataPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
