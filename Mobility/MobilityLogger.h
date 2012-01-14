@@ -23,6 +23,8 @@
 - (void)stopLoggingLocation;
 - (NSString *)jsonRepresentationForDB;
 
++ (NSString *)generateRandomUUID;
+
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
 @end

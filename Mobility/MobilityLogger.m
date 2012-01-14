@@ -129,6 +129,10 @@
         abort();
     }
 }
+#pragma mark - helpers
++ (NSString *)generateRandomUUID {
+    return nil;
+}
 
 #pragma mark - Core Data Stack
 // http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CoreDataUtilityTutorial/Articles/05_createStack.html
