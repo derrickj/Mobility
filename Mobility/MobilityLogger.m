@@ -66,11 +66,9 @@
         NSMutableDictionary *packet = [NSMutableDictionary dictionary];
         NSMutableDictionary *location = [NSMutableDictionary dictionary];
         NSDate *date = d.timestamp;
-        int timeInMillis = [date timeIntervalSince1970] * 1000;
-        
-        
-        
-        [packet setValue:[NSNumber numberWithInt:timeInMillis] forKey:@"time"];
+        NSTimeInterval timeSinceEpoch = [date timeIntervalSince1970];
+        NSLog(@"timeinterval: %f", timeSinceEpoch);
+        [packet setValue:[NSNumber numberWithDouble:timeSinceEpoch] forKey:@"time"];
         [packet setValue:@"America/LosAngeles" forKey:@"timezone"]; //FIXME: don't use hardcoded timezone
         
         [location setValue:d.latitude forKey:@"latitude"];
