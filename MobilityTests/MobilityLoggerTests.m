@@ -21,6 +21,7 @@
 
 - (void)testUUIDGeneration {
     STAssertNotNil([MobilityLogger generateRandomUUID], @"UUID should NOT be nil");
+    STAssertEquals([[MobilityLogger generateRandomUUID] length], (NSUInteger)36, @"UUID should be 36 characters long");
 }
 
 - (void)testJSONRepresentationForDataPoints {
@@ -42,6 +43,7 @@
     id location = [[object objectAtIndex:0] valueForKey:@"location"];
     STAssertEquals([[location valueForKey:@"longitude"] doubleValue], [p.longitude doubleValue], @"location's longitude should be the same");
     STAssertEquals([[location valueForKey:@"latitude"] doubleValue], [p.latitude doubleValue], @"latitudes should be the same");
+    STAssertNotNil([object valueForKey:@"id"], @"object's id should not be Nil");
 
 }
 
