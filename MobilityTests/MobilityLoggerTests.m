@@ -30,6 +30,7 @@
     DataPoint *p = [[DataPoint alloc] initWithEntity:entity insertIntoManagedObjectContext:moc];
     p.longitude = [NSNumber numberWithDouble:12345.67];
     p.latitude = [NSNumber numberWithDouble:543.21];
+    p.accuracy = [NSNumber numberWithDouble:10.0];
     NSArray *list = [NSArray arrayWithObject:p];
     
     NSString *result = [self.logger jsonRepresentationForDataPoints:list];
@@ -43,6 +44,7 @@
     id location = [[object objectAtIndex:0] valueForKey:@"location"];
     STAssertEquals([[location valueForKey:@"longitude"] doubleValue], [p.longitude doubleValue], @"location's longitude should be the same");
     STAssertEquals([[location valueForKey:@"latitude"] doubleValue], [p.latitude doubleValue], @"latitudes should be the same");
+    STAssertEquals([[location valueForKey:@"accuracy"] doubleValue], [p.accuracy doubleValue], @"accuracy should match");
     STAssertNotNil([object valueForKey:@"id"], @"object's id should not be Nil");
 
 }
