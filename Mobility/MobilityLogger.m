@@ -131,7 +131,10 @@
 }
 #pragma mark - helpers
 + (NSString *)generateRandomUUID {
-    return nil;
+    CFUUIDRef uuid = CFUUIDCreate(NULL);
+    CFStringRef cfString = CFUUIDCreateString(NULL, uuid);
+    CFRelease(uuid);
+    return [(NSString *)cfString autorelease];;
 }
 
 #pragma mark - Core Data Stack
