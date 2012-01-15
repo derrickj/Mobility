@@ -57,16 +57,11 @@
     [motionManager stopAccelerometerUpdates];
 }
 
-- (NSString *)jsonRepresentationForDB {
+
+
+- (NSString *)jsonRepresentationForDataPoints:(NSArray *)points {
     NSMutableArray *dataPointList = [NSMutableArray array];
-    NSFetchRequest *fetchReq = [NSFetchRequest fetchRequestWithEntityName:@"DataPoint"];
-    NSError *error = nil;
-    NSArray *rawDataPoints = [self.managedObjectContext executeFetchRequest:fetchReq error:&error];
-    if (error) {
-        NSLog(@"%@", error);
-    }
-    
-    for (DataPoint *d in rawDataPoints) {
+    for (DataPoint *d in points) {
         NSLog(@"datapoint: %@", d.latitude);
         NSMutableDictionary *packet = [NSMutableDictionary dictionary];
         NSMutableDictionary *location = [NSMutableDictionary dictionary];
@@ -92,7 +87,7 @@
         [dataPointList addObject:packet];
     }
     NSLog(@"valid Json: %d", [NSJSONSerialization isValidJSONObject:dataPointList]);
-    error = nil;
+    NSError *error = nil;
     NSData *JSONData = [NSJSONSerialization dataWithJSONObject:dataPointList options:0 error:&error];
     if (error) {
         NSLog(@"derror: %@", error);
@@ -100,6 +95,16 @@
     NSString *JSONString = [[NSString alloc] initWithData:JSONData encoding:NSUTF8StringEncoding];
     NSLog(@"SJONS data: %@", JSONString);
     return [JSONString autorelease];
+}
+
+- (NSString *)jsonRepresentationForDB {
+    NSFetchRequest *fetchReq = [NSFetchRequest fetchRequestWithEntityName:@"DataPoint"];
+    NSError *error = nil;
+    NSArray *rawDataPoints = [self.managedObjectContext executeFetchRequest:fetchReq error:&error];
+    if (error) {
+        NSLog(@"%@", error);
+    }
+    return [self jsonRepresentationForDataPoints:rawDataPoints];
 }
 
 #pragma mark - CLLocation Manager Delegate

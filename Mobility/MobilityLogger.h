@@ -22,6 +22,7 @@
 - (void)startLoggingLocation;
 - (void)stopLoggingLocation;
 - (NSString *)jsonRepresentationForDB;
+- (NSString *)jsonRepresentationForDataPoints:(NSArray *)points;
 
 + (NSString *)generateRandomUUID;
 
