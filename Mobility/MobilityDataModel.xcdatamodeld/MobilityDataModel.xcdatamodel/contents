@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="11D50b" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="AccelData" syncable="YES">
+        <attribute name="x" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="y" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="z" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="sensordata" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SensorData" inverseName="accel_data" inverseEntity="SensorData" syncable="YES"/>
+    </entity>
     <entity name="DataPoint" representedClassName="DataPoint" syncable="YES">
         <attribute name="accuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -7,7 +13,43 @@
         <attribute name="speed" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
     </entity>
+    <entity name="Location" syncable="YES">
+        <attribute name="accuracy" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="provider" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="sensor_data" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SensorData" inverseName="location" inverseEntity="SensorData" syncable="YES"/>
+    </entity>
+    <entity name="Scan" syncable="YES">
+        <attribute name="ssid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="strength" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="wifidata" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="WifiData" inverseName="scan" inverseEntity="WifiData" syncable="YES"/>
+    </entity>
+    <entity name="SensorData" syncable="YES">
+        <attribute name="location_status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="subtype" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="accel_data" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="AccelData" inverseName="sensordata" inverseEntity="AccelData" syncable="YES"/>
+        <relationship name="location" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="sensor_data" inverseEntity="Location" syncable="YES"/>
+        <relationship name="wifi_data" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="WifiData" inverseName="sensordata" inverseEntity="WifiData" syncable="YES"/>
+    </entity>
+    <entity name="WifiData" syncable="YES">
+        <attribute name="time" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="scan" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Scan" inverseName="wifidata" inverseEntity="Scan" syncable="YES"/>
+        <relationship name="sensordata" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SensorData" inverseName="wifi_data" inverseEntity="SensorData" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="DataPoint" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="AccelData" positionX="295" positionY="45" width="128" height="105"/>
+        <element name="DataPoint" positionX="153" positionY="240" width="128" height="120"/>
+        <element name="Location" positionX="133" positionY="-63" width="128" height="150"/>
+        <element name="Scan" positionX="135" positionY="126" width="128" height="90"/>
+        <element name="SensorData" positionX="-18" positionY="-54" width="128" height="180"/>
+        <element name="WifiData" positionX="88" positionY="162" width="128" height="105"/>
     </elements>
 </model>
