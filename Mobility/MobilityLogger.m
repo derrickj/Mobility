@@ -9,6 +9,13 @@
 #import "MobilityLogger.h"
 #import "DataPoint.h"
 
+// entity names defined here to avoid typos from repeatingly typing literal nsstring
+NSString *AccelData = @"AccelData";
+NSString *LocationEntity = @"Location";
+NSString *ScanEntity = @"Scan";
+NSString *WifiDataEntity = @"WifiData";
+NSString *SensorDataEntity = @"SensorData";
+
 @implementation MobilityLogger
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -110,23 +117,66 @@
     NSLog(@"location manager failed: %@", error);
 }
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    //FIXME: Log using CoreData
-    NSLog(@"Got location update: %@, with Acceleromter data: %@", newLocation, [motionManager accelerometerData]);
+//    //FIXME: Log using CoreData
+//    NSLog(@"Got location update: %@, with Acceleromter data: %@", newLocation, [motionManager accelerometerData]);
+//    
+//    NSEntityDescription *entity = [[self.managedObjectModel entitiesByName] valueForKey:@"DataPoint"];
+//
+//    DataPoint *dataPoint = [[DataPoint alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+//    if (dataPoint == nil)
+//        abort();
+//
+//    dataPoint.latitude = [NSNumber numberWithDouble:newLocation.coordinate.latitude];
+//    dataPoint.longitude = [NSNumber numberWithDouble:newLocation.coordinate.longitude];
+//    dataPoint.accuracy = [NSNumber numberWithDouble:newLocation.horizontalAccuracy];
+//    dataPoint.timestamp = newLocation.timestamp;
+//    [dataPoint release];
+
+    NSEntityDescription *entity = [NSEntityDescription entityForName:SensorDataEntity inManagedObjectContext:self.managedObjectContext];
+    NSManagedObject *sensorData = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+
+    // set accelerometer data
+    entity = [NSEntityDescription entityForName:AccelData inManagedObjectContext:self.managedObjectContext];
+    NSManagedObject *accel = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    CMAccelerometerData *caData = [motionManager accelerometerData];
+    CMAcceleration acceleration = [caData acceleration];
+    [accel setValue:[NSNumber numberWithDouble:acceleration.x] forKey:@"x"];
+    [accel setValue:[NSNumber numberWithDouble:acceleration.y] forKey:@"y"];
+    [accel setValue:[NSNumber numberWithDouble:acceleration.z] forKey:@"z"];
+    [sensorData setValue:accel forKey:@"accel_data"];
+    [accel release];
+
+
+    // set location data
+    entity = [NSEntityDescription entityForName:LocationEntity inManagedObjectContext:self.managedObjectContext];
+    NSManagedObject *location = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    [location setValue:[NSNumber numberWithFloat:newLocation.coordinate.latitude] forKey:@"latitude"];
+    [location setValue:[NSNumber numberWithFloat:newLocation.coordinate.longitude] forKey:@"longitude"];
+    [location setValue:[NSNumber numberWithFloat:newLocation.horizontalAccuracy] forKey:@"accuracy"];
+    [location setValue:@"iOSCoreLocation" forKey:@"provider"];
+    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970];
+    [location setValue:[NSNumber numberWithDouble:timeInterval] forKey:@"time"]; // should be time seconds since unix epoch
+    [location setValue:@"PST" forKey:@"timezone"]; //FIXME: get proper timezone
+    [sensorData setValue:location forKey:@"location"];
+    [location release];
     
-    NSEntityDescription *entity = [[self.managedObjectModel entitiesByName] valueForKey:@"DataPoint"];
+    // location_status
+    [sensorData setValue:@"valid" forKey:@"location_status"]; //FIXME: proper status
 
-    DataPoint *dataPoint = [[DataPoint alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-    if (dataPoint == nil)
-        abort();
+    // set subtype
+    [sensorData setValue:@"sensor_data" forKey:@"subtype"];
 
-    dataPoint.latitude = [NSNumber numberWithDouble:newLocation.coordinate.latitude];
-    dataPoint.longitude = [NSNumber numberWithDouble:newLocation.coordinate.longitude];
-    dataPoint.accuracy = [NSNumber numberWithDouble:newLocation.horizontalAccuracy];
-    dataPoint.timestamp = newLocation.timestamp;
-    [dataPoint release];
+    // set mode
+    [sensorData setValue:@"still" forKey:@"mode"]; //FIXME:  this is not always right. Don't want to implement activity classification on-device
+
+    //set speed
+    [sensorData setValue:[NSNumber numberWithDouble:[newLocation speed]] forKey:@"speed"];
+
+    //set wifi_data (Later, unless server requires it)
 
     NSError *error = nil;
     [self.managedObjectContext save:&error];
+    [sensorData release];
     if (error) {
         NSLog(@"error saving data point: %@", error);
         abort();
