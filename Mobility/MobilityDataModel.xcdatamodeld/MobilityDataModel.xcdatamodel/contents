@@ -28,6 +28,7 @@
         <relationship name="wifidata" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="WifiData" inverseName="scan" inverseEntity="WifiData" syncable="YES"/>
     </entity>
     <entity name="SensorData" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location_status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -45,11 +46,11 @@
         <relationship name="sensordata" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SensorData" inverseName="wifi_data" inverseEntity="SensorData" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AccelData" positionX="295" positionY="45" width="128" height="105"/>
+        <element name="AccelData" positionX="295" positionY="45" width="128" height="90"/>
         <element name="DataPoint" positionX="153" positionY="240" width="128" height="120"/>
-        <element name="Location" positionX="133" positionY="-63" width="128" height="150"/>
-        <element name="Scan" positionX="135" positionY="126" width="128" height="90"/>
-        <element name="SensorData" positionX="-18" positionY="-54" width="128" height="180"/>
-        <element name="WifiData" positionX="88" positionY="162" width="128" height="105"/>
+        <element name="Location" positionX="133" positionY="-63" width="128" height="135"/>
+        <element name="Scan" positionX="135" positionY="126" width="128" height="75"/>
+        <element name="SensorData" positionX="-18" positionY="-54" width="128" height="195"/>
+        <element name="WifiData" positionX="88" positionY="162" width="128" height="90"/>
     </elements>
 </model>

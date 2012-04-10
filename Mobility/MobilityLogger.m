@@ -65,31 +65,37 @@ NSString *SensorDataEntity = @"SensorData";
 }
 
 
-
+- (NSDictionary *)dictionaryRepresentationForObject:(NSManagedObject *)object {
+    NSArray *keys = [[[object entity] attributesByName] allKeys];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    for (NSString *key in keys) {
+        id value = [object valueForKey:key];
+        if ([value class] == [NSManagedObject class]) {
+            [dict setValue:[self dictionaryRepresentationForObject:(NSManagedObject *)value] forKey:key];
+        } else {
+            [dict setValue:value forKey:key];
+        }
+    }
+    return [dict autorelease];
+}
 - (NSString *)jsonRepresentationForDataPoints:(NSArray *)points {
     NSMutableArray *dataPointList = [NSMutableArray array];
-    for (DataPoint *d in points) {
-        NSLog(@"datapoint: %@", d.latitude);
-        NSMutableDictionary *packet = [NSMutableDictionary dictionary];
-        NSMutableDictionary *location = [NSMutableDictionary dictionary];
-        NSDate *date = d.timestamp;
-        NSTimeInterval timeSinceEpoch = [date timeIntervalSince1970];
-        NSLog(@"timeinterval: %f", timeSinceEpoch);
-        [packet setValue:[NSNumber numberWithDouble:timeSinceEpoch] forKey:@"time"];
-        [packet setValue:@"America/LosAngeles" forKey:@"timezone"]; //FIXME: don't use hardcoded timezone
-        
-        [location setValue:d.latitude forKey:@"latitude"];
-        [location setValue:d.longitude forKey:@"longitude"];
-        [location setValue:d.accuracy forKey:@"accuracy"];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
-        NSLog(@"Date format: %@", [dateFormatter stringFromDate:date]);
-        [location setValue:[dateFormatter stringFromDate:date] forKey:@"timestamp"];
-        [dateFormatter release];
-        
-        [packet setValue:location forKey:@"location"];
-        
-        [dataPointList addObject:packet];
+    for (NSManagedObject *d in points) {
+//        NSMutableDictionary *packet = [NSMutableDictionary dictionary];
+//        NSLog(@"packet: %@", d);
+//        [packet setValue:[d valueForKey:@"time"] forKey:@"time"];
+//        [packet setValue:[d valueForKey:@"timezone"] forKey:@"timezone"];
+//        [packet setValue:[d valueForKey:@"location_status"] forKey:@"location_status"];
+//        
+//        // set location
+//        NSArray *locationKeys = [[[[d valueForKey:@"location"] entity] attributesByName] allKeys];
+//        NSDictionary *location = [[d valueForKey:@"location"] dictionaryWithValuesForKeys:locationKeys];
+//        [packet setValue:location forKey:@"location"];
+//        NSLog(@"Location: %@", location);
+//        
+//        
+        // set subtype, etc
+        [dataPointList addObject:[self dictionaryRepresentationForObject:d]];
     }
     NSLog(@"valid Json: %d", [NSJSONSerialization isValidJSONObject:dataPointList]);
     NSError *error = nil;
@@ -103,13 +109,25 @@ NSString *SensorDataEntity = @"SensorData";
 }
 
 - (NSString *)jsonRepresentationForDB {
-    NSFetchRequest *fetchReq = [NSFetchRequest fetchRequestWithEntityName:@"DataPoint"];
+    NSFetchRequest *fetchReq = [NSFetchRequest fetchRequestWithEntityName:SensorDataEntity];
     NSError *error = nil;
     NSArray *rawDataPoints = [self.managedObjectContext executeFetchRequest:fetchReq error:&error];
     if (error) {
         NSLog(@"%@", error);
     }
-    return [self jsonRepresentationForDataPoints:rawDataPoints];
+
+//    // JSON serialization requires either NSArrays, or NSDictionary, so convert the NSManagedObjects
+//    NSMutableArray *dictDataPoints = [[NSMutableArray alloc] init];
+//    for (NSManagedObject *object in rawDataPoints) {
+//        // lifted from:
+//        //http://stackoverflow.com/questions/5664423/storing-nsmanagedobject-in-a-dictionary-nsdictionary
+//        NSArray *keys = [[[object entity] attributesByName] allKeys];
+//        NSDictionary *dict = [object dictionaryWithValuesForKeys:keys];
+//        [dictDataPoints addObject:dict];
+//    }
+//    NSData *JSONData = [NSJSONSerialization dataWithJSONObject:rawDataPoints options:0 error:&error];
+//    [dictDataPoints release];
+    return [[[self jsonRepresentationForDataPoints:rawDataPoints] retain] autorelease];
 }
 
 #pragma mark - CLLocation Manager Delegate
@@ -134,6 +152,8 @@ NSString *SensorDataEntity = @"SensorData";
 
     NSEntityDescription *entity = [NSEntityDescription entityForName:SensorDataEntity inManagedObjectContext:self.managedObjectContext];
     NSManagedObject *sensorData = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    [sensorData setValue:@"PST" forKey:@"timezone"];
+    [sensorData setValue:[[self class] generateRandomUUID] forKey:@"id"];
 
     // set accelerometer data
     entity = [NSEntityDescription entityForName:AccelData inManagedObjectContext:self.managedObjectContext];
@@ -158,6 +178,7 @@ NSString *SensorDataEntity = @"SensorData";
     [location setValue:[NSNumber numberWithDouble:timeInterval] forKey:@"time"]; // should be time seconds since unix epoch
     [location setValue:@"PST" forKey:@"timezone"]; //FIXME: get proper timezone
     [sensorData setValue:location forKey:@"location"];
+    [sensorData setValue:[location valueForKey:@"time"] forKey:@"time"];
     [location release];
     
     // location_status
