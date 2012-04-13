@@ -202,7 +202,7 @@ NSString *SensorDataEntity = @"SensorData";
     [accel setValue:[NSNumber numberWithDouble:acceleration.x] forKey:@"x"];
     [accel setValue:[NSNumber numberWithDouble:acceleration.y] forKey:@"y"];
     [accel setValue:[NSNumber numberWithDouble:acceleration.z] forKey:@"z"];
-    [sensorData setValue:accel forKey:@"accel_data"];
+    [sensorData setValue:[NSSet setWithObject:accel] forKey:@"accel_data"];
     [accel release];
 
 
@@ -235,9 +235,9 @@ NSString *SensorDataEntity = @"SensorData";
     //set wifi_data (Later, unless server requires it)
     entity = [NSEntityDescription entityForName:WifiDataEntity inManagedObjectContext:self.managedObjectContext];
     NSManagedObject *wifiPacket = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-    
-    [sensorData setValue:[NSArray arrayWithObject:wifiPacket] forKey:@"wifi_data"];
-    
+    // an object with a to-many relationship requires an NSSet    
+    [sensorData setValue:[NSSet setWithObject:wifiPacket] forKey:@"wifi_data"];
+
     NSError *error = nil;
     [self.managedObjectContext save:&error];
     [sensorData release];
