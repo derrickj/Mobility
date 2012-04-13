@@ -64,38 +64,77 @@ NSString *SensorDataEntity = @"SensorData";
     [motionManager stopAccelerometerUpdates];
 }
 
-
-- (NSDictionary *)dictionaryRepresentationForObject:(NSManagedObject *)object {
-    NSArray *keys = [[[object entity] attributesByName] allKeys];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    for (NSString *key in keys) {
-        id value = [object valueForKey:key];
-        if ([value class] == [NSManagedObject class]) {
-            [dict setValue:[self dictionaryRepresentationForObject:(NSManagedObject *)value] forKey:key];
-        } else {
-            [dict setValue:value forKey:key];
+// goal is to return a JSON compatible representation for an object
+// must be dictionary, arrays, or numbers.
+- (id)dictionaryRepresentationForObject:(id)object {
+    // basecase : no need to go further, return self
+    // recursive case, array of objects or managed object
+    
+    if ([object class] == [NSArray class]) {
+        NSMutableArray *convertedArray = [[NSMutableArray alloc] init];
+        for(id element in object) {
+            [convertedArray addObject:[self dictionaryRepresentationForObject:element]];
         }
+        return [convertedArray autorelease];
+    } else if ([object class] == [NSManagedObject class]) {
+        NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+        NSArray *keys = [[[(NSManagedObject *)object entity] attributesByName] allKeys];
+        for (id key in keys) {
+            NSLog(@"Key: %@", key);
+            [dictionary setValue:[self dictionaryRepresentationForObject:[object valueForKey:key]] forKey:key];
+        }
+        return [dictionary autorelease];
+    } else if ([object isKindOfClass:[NSString class]]){
+        return object;
+    } else if ([object isKindOfClass:[NSNumber class]]) {
+        return object;
     }
-    return [dict autorelease];
+    else {
+        NSLog(@"Other: %@, %@", object, [object class]);
+        return [[[NSNull alloc] init] autorelease];
+    }
 }
 - (NSString *)jsonRepresentationForDataPoints:(NSArray *)points {
     NSMutableArray *dataPointList = [NSMutableArray array];
     for (NSManagedObject *d in points) {
-//        NSMutableDictionary *packet = [NSMutableDictionary dictionary];
-//        NSLog(@"packet: %@", d);
-//        [packet setValue:[d valueForKey:@"time"] forKey:@"time"];
-//        [packet setValue:[d valueForKey:@"timezone"] forKey:@"timezone"];
-//        [packet setValue:[d valueForKey:@"location_status"] forKey:@"location_status"];
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        NSNumber *time = [d valueForKey:@"time"];
+        NSString *timezone = [d valueForKey:@"timezone"];
+        NSString *location_status = [d valueForKey:@"location_status"];
+        
+        
+        
+        // location is a nested object, so must be converted to a dictionary
+        // as well
+        NSManagedObject *loc = [d valueForKey:@"location"];
+        NSDictionary *location = [NSMutableDictionary dictionary];
+        [location setValue:[loc valueForKey:@"latitude"] forKey:@"latitude"];
+        [location setValue:[loc valueForKey:@"longitude"] forKey:@"longitude"];
+        [location setValue:[loc valueForKey:@"provider"] forKey:@"provider"];
+        [location setValue:[loc valueForKey:@"accuracy"] forKey:@"accuracy"];
+        [location setValue:[loc valueForKey:@"time"] forKey:@"time"];
+        [location setValue:[loc valueForKey:@"timezone"] forKey:@"timezone"];
+
+        // subtype etc
+        NSString *subtype = [d valueForKey:@"subtype"];
+        NSString *mode = [d valueForKey:@"mode"];
+        NSNumber *speed = [d valueForKey:@"speed"];
+        NSDictionary *accel_data = [d valueForKey:@"accel_data"];
+        NSDictionary *wifi_data = [d valueForKey:@"wifi_data"];
+
+        // set values
+        [dict setValue:time forKey:@"time"];
+        [dict setValue:timezone forKey:@"timezone"];
+        [dict setValue:location_status forKey:@"location_status"];
+        [dict setValue:location forKey:@"location"];
+        [dict setValue:subtype forKey:@"subtype"];
+        [dict setValue:mode forKey:@"mode"];
+        [dict setValue:speed forKey:@"speed"];
+//        [dict setValue:accel_data forKey:@"accel_data"]; // FIXME, PROBLEM WITH ACCEL DATA
+//        [dict setValue:wifi_data forKey:@"wifi_data"];
 //        
-//        // set location
-//        NSArray *locationKeys = [[[[d valueForKey:@"location"] entity] attributesByName] allKeys];
-//        NSDictionary *location = [[d valueForKey:@"location"] dictionaryWithValuesForKeys:locationKeys];
-//        [packet setValue:location forKey:@"location"];
-//        NSLog(@"Location: %@", location);
-//        
-//        
-        // set subtype, etc
-        [dataPointList addObject:[self dictionaryRepresentationForObject:d]];
+        // add our constructed object to the array!!!
+        [dataPointList addObject:dict];
     }
     NSLog(@"valid Json: %d", [NSJSONSerialization isValidJSONObject:dataPointList]);
     NSError *error = nil;
@@ -194,7 +233,11 @@ NSString *SensorDataEntity = @"SensorData";
     [sensorData setValue:[NSNumber numberWithDouble:[newLocation speed]] forKey:@"speed"];
 
     //set wifi_data (Later, unless server requires it)
-
+    entity = [NSEntityDescription entityForName:WifiDataEntity inManagedObjectContext:self.managedObjectContext];
+    NSManagedObject *wifiPacket = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    
+    [sensorData setValue:[NSArray arrayWithObject:wifiPacket] forKey:@"wifi_data"];
+    
     NSError *error = nil;
     [self.managedObjectContext save:&error];
     [sensorData release];
