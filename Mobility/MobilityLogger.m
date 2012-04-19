@@ -144,7 +144,7 @@ NSString *SensorDataEntity = @"SensorData";
         [dict setValue:speed forKey:@"speed"];
         [dict setValue:accel_data forKey:@"accel_data"]; // FIXME, PROBLEM WITH ACCEL DATA
         [accel_data release];
-//        [dict setValue:wifi_data forKey:@"wifi_data"];
+        [dict setValue:wifi_data forKey:@"wifi_data"];
 //        
         // add our constructed object to the array!!!
         [dataPointList addObject:dict];
@@ -248,8 +248,20 @@ NSString *SensorDataEntity = @"SensorData";
     //set wifi_data (Later, unless server requires it)
     entity = [NSEntityDescription entityForName:WifiDataEntity inManagedObjectContext:self.managedObjectContext];
     NSManagedObject *wifiPacket = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
-    // an object with a to-many relationship requires an NSSet    
+    [wifiPacket setValue:[location valueForKey:@"time"] forKey:@"time"];
+    [wifiPacket setValue:@"PST" forKey:@"timezone"];
+    
+    // wifi data requires a list of scan objects, so add 1 for now.
+    entity = [NSEntityDescription entityForName:ScanEntity inManagedObjectContext:self.managedObjectContext];
+    NSManagedObject *scan1 = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+    // an object with a to-many relationship requires an NSSet
+    [scan1 setValue:@"NotARealSSID" forKey:@"ssid"];
+    [scan1 setValue:[NSNumber numberWithDouble:0.0] forKey:@"strength"];
+    [wifiPacket setValue:scan1 forKey:@"scan"];
+    [scan1 release];
     [sensorData setValue:[NSSet setWithObject:wifiPacket] forKey:@"wifi_data"];
+    [wifiPacket release];
+
 
     NSError *error = nil;
     [self.managedObjectContext save:&error];
