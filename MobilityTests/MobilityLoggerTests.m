@@ -8,6 +8,7 @@
 
 #import "MobilityLoggerTests.h"
 #import <CoreLocation/CoreLocation.h>
+#import <CoreMotion/CoreMotion.h>
 
 @implementation MobilityLoggerTests
 
@@ -30,6 +31,13 @@
     STAssertTrue([self.logger didStoreLocation:location], @"Logger Should Successfully store a given location");
     [location release];
     
+}
+
+- (void)testAccelerometerLogging {
+    CMMotionManager *manager = [[CMMotionManager alloc] init];
+    STAssertTrue([self.logger didStoreAccelerometerData:[manager accelerometerData]],
+                 @"MobilityLogger should successfully save accel data");
+    [manager release];
 }
 
 @end
