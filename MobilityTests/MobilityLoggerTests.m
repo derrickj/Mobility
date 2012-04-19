@@ -7,7 +7,7 @@
 //
 
 #import "MobilityLoggerTests.h"
-#import "DataPoint.h"
+#import <CoreLocation/CoreLocation.h>
 
 @implementation MobilityLoggerTests
 
@@ -24,32 +24,12 @@
     STAssertEquals([[MobilityLogger generateRandomUUID] length], (NSUInteger)36, @"UUID should be 36 characters long");
 }
 
-- (void)testJSONRepresentationForDataPoints {
-    NSManagedObjectContext *moc = self.logger.managedObjectContext;
-    NSEntityDescription *entity = [[self.logger.managedObjectModel entitiesByName] valueForKey:@"DataPoint"];
-    DataPoint *p = [[DataPoint alloc] initWithEntity:entity insertIntoManagedObjectContext:moc];
-    p.longitude = [NSNumber numberWithDouble:12345.67];
-    p.latitude = [NSNumber numberWithDouble:543.21];
-    p.accuracy = [NSNumber numberWithDouble:10.0];
-    p.timestamp = [NSDate  date];
-
-    NSArray *list = [NSArray arrayWithObject:p];
+- (void)testLocationLogging {
+    CLLocation *location  = [[CLLocation alloc] initWithLatitude:1.10 longitude:3.30];
     
-    NSString *result = [self.logger jsonRepresentationForDataPoints:list];
+    STAssertTrue([self.logger didStoreLocation:location], @"Logger Should Successfully store a given location");
+    [location release];
     
-    STAssertNotNil(result, @"json representation should not be nil");
-    
-    NSError *error = nil;
-    id object = [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
-    STAssertNil(error, @"Getting an object from JSON data should succeed");
-    STAssertEquals([object count], (NSUInteger)1, @"array length should be 1");
-    id location = [[object objectAtIndex:0] valueForKey:@"location"];
-    STAssertEquals([[location valueForKey:@"longitude"] doubleValue], [p.longitude doubleValue], @"location's longitude should be the same");
-    STAssertEquals([[location valueForKey:@"latitude"] doubleValue], [p.latitude doubleValue], @"latitudes should be the same");
-    STAssertEquals([[location valueForKey:@"accuracy"] doubleValue], [p.accuracy doubleValue], @"accuracy should match");
-    STAssertNotNil([object valueForKey:@"id"], @"object's id should not be Nil");
-    STAssertTrue([[[object objectAtIndex:0] valueForKey:@"time"] intValue] > 0, @"time since epoch should not be negative");
-
 }
 
 @end
