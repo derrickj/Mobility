@@ -7,6 +7,7 @@
 //
 
 #import "MobilityLogger.h"
+#import "Location.h"
 
 // entity names defined here to avoid typos from repeatingly typing literal nsstring
 NSString *AccelData = @"AccelData";
@@ -33,7 +34,27 @@ NSString *SensorDataEntity = @"SensorData";
 #pragma mark - API to callers
 // API for Storing Data
 // store location
-- (BOOL) didStoreLocation: (CLLocation *)location { return NO; }
+- (BOOL) didStoreLocation: (CLLocation *)location {
+    // create new location object for database
+    Location *l = [NSEntityDescription insertNewObjectForEntityForName:LocationEntity inManagedObjectContext:self.managedObjectContext];
+    // set values
+    l.latitude = [NSNumber numberWithDouble:location.coordinate.latitude];
+    l.longitude = [NSNumber numberWithDouble:location.coordinate.longitude];
+
+    NSTimeInterval t = [location.timestamp timeIntervalSince1970];
+    l.time = [NSNumber numberWithDouble:t]; // timeinterval is typedef'ed to double
+    l.timezone = @"GMT"; // NSDate's timeIntervalSince1970 method is in GMT
+    l.accuracy = [NSNumber numberWithDouble:location.horizontalAccuracy];
+    l.provider = @"iOS Core Location";
+
+    // save the managed object context (ie commit to database)
+    NSError *error = nil;
+    [self.managedObjectContext save:&error];
+    if (error) {
+        abort(); // should only do this in testing, not for shipping code
+    }
+    return error == nil;
+}
 // store accel data
 - (BOOL) didStoreAccelerometerData:(CMAccelerometerData *)accelData {return  NO; }
 // store wifi data FIXME: add api for this (lower priority)
