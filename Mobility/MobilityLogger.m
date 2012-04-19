@@ -119,7 +119,19 @@ NSString *SensorDataEntity = @"SensorData";
         NSString *subtype = [d valueForKey:@"subtype"];
         NSString *mode = [d valueForKey:@"mode"];
         NSNumber *speed = [d valueForKey:@"speed"];
-        NSDictionary *accel_data = [d valueForKey:@"accel_data"];
+        NSArray *accel_data_old = [d valueForKey:@"accel_data"];
+        NSMutableArray *accel_data = [[NSMutableArray alloc] init];
+        for (id accel_packet in accel_data_old) {
+            NSMutableDictionary *accel_dict = [[NSMutableDictionary alloc] init];
+            // set all keys in dictionary for attributes in the managed object
+            for (NSString *accel_key in [[[(NSManagedObject *)accel_packet entity] attributesByName] allKeys]) {
+                [accel_dict setValue:[accel_packet valueForKey:accel_key] forKey:accel_key];
+            }
+            
+            // add the dictionry to the final array
+            [accel_data addObject:accel_dict];
+            [accel_dict release];
+        }
         NSDictionary *wifi_data = [d valueForKey:@"wifi_data"];
 
         // set values
@@ -130,7 +142,8 @@ NSString *SensorDataEntity = @"SensorData";
         [dict setValue:subtype forKey:@"subtype"];
         [dict setValue:mode forKey:@"mode"];
         [dict setValue:speed forKey:@"speed"];
-//        [dict setValue:accel_data forKey:@"accel_data"]; // FIXME, PROBLEM WITH ACCEL DATA
+        [dict setValue:accel_data forKey:@"accel_data"]; // FIXME, PROBLEM WITH ACCEL DATA
+        [accel_data release];
 //        [dict setValue:wifi_data forKey:@"wifi_data"];
 //        
         // add our constructed object to the array!!!
