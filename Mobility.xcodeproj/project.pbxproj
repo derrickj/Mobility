@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4900FD0D153FF235007AD025 /* MobilitySensorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4900FD0C153FF235007AD025 /* MobilitySensorManager.m */; };
 		4900FD10153FF848007AD025 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 4900FD0F153FF848007AD025 /* Location.m */; };
+		4900FD13153FF898007AD025 /* MobilityClassifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 4900FD12153FF898007AD025 /* MobilityClassifier.m */; };
 		4907EF491471F03600AA91D7 /* MobilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4907EF471471F03600AA91D7 /* MobilityViewController.m */; };
 		4907EF4A1471F03600AA91D7 /* MobilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4907EF471471F03600AA91D7 /* MobilityViewController.m */; };
 		4907EF4B1471F03600AA91D7 /* MobilityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4907EF481471F03600AA91D7 /* MobilityViewController.xib */; };
@@ -52,6 +53,8 @@
 		4900FD0C153FF235007AD025 /* MobilitySensorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobilitySensorManager.m; sourceTree = "<group>"; };
 		4900FD0E153FF848007AD025 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		4900FD0F153FF848007AD025 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		4900FD11153FF898007AD025 /* MobilityClassifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobilityClassifier.h; sourceTree = "<group>"; };
+		4900FD12153FF898007AD025 /* MobilityClassifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobilityClassifier.m; sourceTree = "<group>"; };
 		4907EF461471F03600AA91D7 /* MobilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobilityViewController.h; sourceTree = "<group>"; };
 		4907EF471471F03600AA91D7 /* MobilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobilityViewController.m; sourceTree = "<group>"; };
 		4907EF481471F03600AA91D7 /* MobilityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MobilityViewController.xib; sourceTree = "<group>"; };
@@ -157,6 +160,8 @@
 				492C6A7E1471FBD8002E7651 /* MobilityLogger.m */,
 				4900FD0B153FF235007AD025 /* MobilitySensorManager.h */,
 				4900FD0C153FF235007AD025 /* MobilitySensorManager.m */,
+				4900FD11153FF898007AD025 /* MobilityClassifier.h */,
+				4900FD12153FF898007AD025 /* MobilityClassifier.m */,
 			);
 			path = Mobility;
 			sourceTree = "<group>";
@@ -310,6 +315,7 @@
 				492C6A7F1471FBD8002E7651 /* MobilityLogger.m in Sources */,
 				4900FD0D153FF235007AD025 /* MobilitySensorManager.m in Sources */,
 				4900FD10153FF848007AD025 /* Location.m in Sources */,
+				4900FD13153FF898007AD025 /* MobilityClassifier.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
