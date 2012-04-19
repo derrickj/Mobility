@@ -9,12 +9,12 @@
 #import "MobilityViewController.h"
 
 @implementation MobilityViewController
-@synthesize cell, loggingSwitch, logger;
+@synthesize cell, loggingSwitch, sensorManager;
 
 #pragma mark - Memory Management
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.logger = [[[MobilityLogger alloc] init] autorelease];
+        self.sensorManager = [[[MobilitySensorManager alloc] init] autorelease];
     }
     return self;
 }
@@ -28,7 +28,7 @@
 }
 
 - (void)dealloc {
-    self.logger = nil;
+    self.sensorManager = nil;
 }
 
 #pragma mark - View lifecycle
@@ -84,9 +84,9 @@
         return;
     }
     if (((UISwitch *)sender).isOn == YES) {
-        [self.logger startLoggingLocation];
+        [self.sensorManager startLoggingLocation];
     } else {
-        [self.logger stopLoggingLocation];
+        [self.sensorManager stopLoggingLocation];
     }
 }
 

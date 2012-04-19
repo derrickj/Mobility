@@ -7,7 +7,6 @@
 //
 
 #import "MobilityLogger.h"
-#import "DataPoint.h"
 
 // entity names defined here to avoid typos from repeatingly typing literal nsstring
 NSString *AccelData = @"AccelData";
@@ -24,16 +23,6 @@ NSString *SensorDataEntity = @"SensorData";
 
 
 #pragma mark - Memory Management
-- (id)init{
-    if (self = [super init]) {
-//        locationManager.purpose = @"Mobility logs your location periodically to upload to an Ohmage server later";
-
-
-
-        
-    }
-    return self;
-}
 
 - (void)dealloc {
     [_managedObjectContext release];
@@ -53,23 +42,7 @@ NSString *SensorDataEntity = @"SensorData";
 - (NSArray *)getAllStoredLocationPoints { return nil; } // return of CLLocation objects
 - (NSArray *)getAllStoredAccelerometerPoints { return nil; }// return list of CMAccelerometerData
 
-- (void)startLoggingLocation {
-//    [locationManager startUpdatingLocation];
-//    [locationManager startMonitoringSignificantLocationChanges];
-//
-//    //FIXME: decouple accelerometer updating?
-//    [motionManager startAccelerometerUpdates];
-//    NSLog(@"Started updating location");
-}
 
-- (void)stopLoggingLocation {
-//    NSLog(@"Stopped updating location");
-//    [locationManager stopUpdatingLocation];
-//    [locationManager stopMonitoringSignificantLocationChanges];
-//
-//    //FIXME: decouple accelerometer updating?
-//    [motionManager stopAccelerometerUpdates];
-}
 
 // goal is to return a JSON compatible representation for an object
 // must be dictionary, arrays, or numbers.
