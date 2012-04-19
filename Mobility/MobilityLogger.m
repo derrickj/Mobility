@@ -8,9 +8,10 @@
 
 #import "MobilityLogger.h"
 #import "Location.h"
+#import "AccelData.h"
 
 // entity names defined here to avoid typos from repeatingly typing literal nsstring
-NSString *AccelData = @"AccelData";
+NSString *AccelDataEntity = @"AccelData";
 NSString *LocationEntity = @"Location";
 NSString *ScanEntity = @"Scan";
 NSString *WifiDataEntity = @"WifiData";
@@ -56,7 +57,24 @@ NSString *SensorDataEntity = @"SensorData";
     return error == nil;
 }
 // store accel data
-- (BOOL) didStoreAccelerometerData:(CMAccelerometerData *)accelData {return  NO; }
+- (BOOL) didStoreAccelerometerData:(CMAccelerometerData *)accelData {
+    AccelData *a = [NSEntityDescription insertNewObjectForEntityForName:AccelDataEntity
+                                                 inManagedObjectContext:self.managedObjectContext];
+    a.timestamp = [NSNumber numberWithDouble:accelData.timestamp];
+    CMAcceleration cma = accelData.acceleration;
+    a.x = [NSNumber numberWithDouble:cma.x];
+    a.y = [NSNumber numberWithDouble:cma.y];
+    a.z = [NSNumber numberWithDouble:cma.z];
+
+    NSError *error = nil;
+    [self.managedObjectContext save:&error];
+    if (error) {
+        abort();
+    }
+
+    return error == nil; // return YES if no error
+}
+
 // store wifi data FIXME: add api for this (lower priority)
 
 // Data Point Retreival: A Classifier would probably want to use this, or the uploader
