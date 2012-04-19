@@ -5,13 +5,6 @@
         <attribute name="y" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="z" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
-    <entity name="DataPoint" representedClassName="DataPoint" syncable="YES">
-        <attribute name="accuracy" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="speed" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
-    </entity>
     <entity name="Location" syncable="YES">
         <attribute name="accuracy" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -29,10 +22,9 @@
         <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AccelData" positionX="45" positionY="-270" width="128" height="90"/>
-        <element name="DataPoint" positionX="484" positionY="258" width="128" height="120"/>
+        <element name="AccelData" positionX="45" positionY="-270" width="128" height="105"/>
         <element name="Location" positionX="178" positionY="-63" width="128" height="135"/>
         <element name="Scan" positionX="349" positionY="96" width="128" height="75"/>
-        <element name="WifiData" positionX="61" positionY="237" width="128" height="75"/>
+        <element name="WifiData" positionX="61" positionY="237" width="128" height="105"/>
     </elements>
 </model>

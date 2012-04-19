@@ -33,7 +33,6 @@
 		49B205FF1471E4DF00534F33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B205E61471E4DF00534F33 /* Foundation.framework */; };
 		49B206071471E4DF00534F33 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49B206051471E4DF00534F33 /* InfoPlist.strings */; };
 		49B2060A1471E4DF00534F33 /* MobilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B206091471E4DF00534F33 /* MobilityTests.m */; };
-		49CB76B414AE7F3B00015999 /* DataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CB76B314AE7F3B00015999 /* DataPoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,8 +73,6 @@
 		49B206061471E4DF00534F33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49B206081471E4DF00534F33 /* MobilityTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobilityTests.h; sourceTree = "<group>"; };
 		49B206091471E4DF00534F33 /* MobilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobilityTests.m; sourceTree = "<group>"; };
-		49CB76B214AE7F3B00015999 /* DataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataPoint.h; sourceTree = "<group>"; };
-		49CB76B314AE7F3B00015999 /* DataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataPoint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,8 +147,6 @@
 				4907EF461471F03600AA91D7 /* MobilityViewController.h */,
 				4907EF471471F03600AA91D7 /* MobilityViewController.m */,
 				4907EF481471F03600AA91D7 /* MobilityViewController.xib */,
-				49CB76B214AE7F3B00015999 /* DataPoint.h */,
-				49CB76B314AE7F3B00015999 /* DataPoint.m */,
 				492C6A7D1471FBD8002E7651 /* MobilityLogger.h */,
 				492C6A7E1471FBD8002E7651 /* MobilityLogger.m */,
 			);
@@ -303,7 +298,6 @@
 				4907EF491471F03600AA91D7 /* MobilityViewController.m in Sources */,
 				492C6A7A1471FA10002E7651 /* MobilityDataModel.xcdatamodeld in Sources */,
 				492C6A7F1471FBD8002E7651 /* MobilityLogger.m in Sources */,
-				49CB76B414AE7F3B00015999 /* DataPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
