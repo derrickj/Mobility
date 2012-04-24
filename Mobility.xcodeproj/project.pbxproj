@@ -16,6 +16,7 @@
 		4909291D15474916008630E9 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 4909291C15474916008630E9 /* Location.m */; };
 		4909292015475336008630E9 /* Location+MJSONSerializable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4909291F15475336008630E9 /* Location+MJSONSerializable.m */; };
 		49092923154754AD008630E9 /* AccelData+MJSONSerializable.m in Sources */ = {isa = PBXBuildFile; fileRef = 49092922154754AD008630E9 /* AccelData+MJSONSerializable.m */; };
+		4909292D15475C06008630E9 /* CoreDataObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4909292C15475C06008630E9 /* CoreDataObjectTests.m */; };
 		492C6A7A1471FA10002E7651 /* MobilityDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A781471FA10002E7651 /* MobilityDataModel.xcdatamodeld */; };
 		492C6A7B1471FA10002E7651 /* MobilityDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A781471FA10002E7651 /* MobilityDataModel.xcdatamodeld */; };
 		492C6A7F1471FBD8002E7651 /* MobilityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A7E1471FBD8002E7651 /* MobilityLogger.m */; };
@@ -66,6 +67,8 @@
 		4909291F15475336008630E9 /* Location+MJSONSerializable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Location+MJSONSerializable.m"; sourceTree = "<group>"; };
 		49092921154754AD008630E9 /* AccelData+MJSONSerializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AccelData+MJSONSerializable.h"; sourceTree = "<group>"; };
 		49092922154754AD008630E9 /* AccelData+MJSONSerializable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AccelData+MJSONSerializable.m"; sourceTree = "<group>"; };
+		4909292B15475C06008630E9 /* CoreDataObjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataObjectTests.h; sourceTree = "<group>"; };
+		4909292C15475C06008630E9 /* CoreDataObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataObjectTests.m; sourceTree = "<group>"; };
 		492C6A791471FA10002E7651 /* MobilityDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MobilityDataModel.xcdatamodel; sourceTree = "<group>"; };
 		492C6A7D1471FBD8002E7651 /* MobilityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobilityLogger.h; sourceTree = "<group>"; };
 		492C6A7E1471FBD8002E7651 /* MobilityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobilityLogger.m; sourceTree = "<group>"; };
@@ -200,6 +203,8 @@
 		49B206021471E4DF00534F33 /* MobilityTests */ = {
 			isa = PBXGroup;
 			children = (
+				4909292B15475C06008630E9 /* CoreDataObjectTests.h */,
+				4909292C15475C06008630E9 /* CoreDataObjectTests.m */,
 				49B206081471E4DF00534F33 /* MobilityTests.h */,
 				49B206091471E4DF00534F33 /* MobilityTests.m */,
 				49A9083614C16B1500BA7911 /* MobilityLoggerTests.h */,
@@ -348,6 +353,7 @@
 				492C6A7B1471FA10002E7651 /* MobilityDataModel.xcdatamodeld in Sources */,
 				492C6A801471FBD8002E7651 /* MobilityLogger.m in Sources */,
 				49A9083914C16B1500BA7911 /* MobilityLoggerTests.m in Sources */,
+				4909292D15475C06008630E9 /* CoreDataObjectTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
