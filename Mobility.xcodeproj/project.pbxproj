@@ -157,6 +157,8 @@
 				49B205F31471E4DF00534F33 /* AppDelegate.h */,
 				49B205F41471E4DF00534F33 /* AppDelegate.m */,
 				49B205EB1471E4DF00534F33 /* Supporting Files */,
+				4900FD0E153FF848007AD025 /* Location.h */,
+				4900FD0F153FF848007AD025 /* Location.m */,
 				4907EF461471F03600AA91D7 /* MobilityViewController.h */,
 				4907EF471471F03600AA91D7 /* MobilityViewController.m */,
 				4907EF481471F03600AA91D7 /* MobilityViewController.xib */,
@@ -181,8 +183,6 @@
 				49B205F01471E4DF00534F33 /* main.m */,
 				49B205F21471E4DF00534F33 /* Mobility-Prefix.pch */,
 				492C6A781471FA10002E7651 /* MobilityDataModel.xcdatamodeld */,
-				4900FD0E153FF848007AD025 /* Location.h */,
-				4900FD0F153FF848007AD025 /* Location.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
