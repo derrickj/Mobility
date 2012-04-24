@@ -2,7 +2,7 @@
 //  Location.h
 //  Mobility
 //
-//  Created by Derrick Jones on 4/19/12.
+//  Created by Derrick Jones on 4/24/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -18,5 +18,6 @@
 @property (nonatomic, retain) NSString * provider;
 @property (nonatomic, retain) NSNumber * time;
 @property (nonatomic, retain) NSString * timezone;
+@property (nonatomic, retain) NSString * uuid;
 
 @end

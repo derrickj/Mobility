@@ -39,6 +39,7 @@ NSString *SensorDataEntity = @"SensorData";
     // create new location object for database
     Location *l = [NSEntityDescription insertNewObjectForEntityForName:LocationEntity inManagedObjectContext:self.managedObjectContext];
     // set values
+    l.uuid = [MobilityLogger generateRandomUUID]; //the ohmage server expect this to be named "id", but "id" is a keyword in Obj-C
     l.latitude = [NSNumber numberWithDouble:location.coordinate.latitude];
     l.longitude = [NSNumber numberWithDouble:location.coordinate.longitude];
 

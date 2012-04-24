@@ -13,6 +13,7 @@
         <attribute name="provider" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="timezone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Scan" syncable="YES">
         <attribute name="ssid" optional="YES" attributeType="String" syncable="YES"/>
@@ -24,7 +25,7 @@
     </entity>
     <elements>
         <element name="AccelData" positionX="45" positionY="-270" width="128" height="105"/>
-        <element name="Location" positionX="178" positionY="-63" width="128" height="135"/>
+        <element name="Location" positionX="178" positionY="-63" width="128" height="150"/>
         <element name="Scan" positionX="349" positionY="96" width="128" height="75"/>
         <element name="WifiData" positionX="61" positionY="237" width="128" height="105"/>
     </elements>
