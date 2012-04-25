@@ -18,18 +18,19 @@
     NSManagedObjectModel *_managedObjectModel;
 }
 
-// API for Storing Data
+#pragma mark - API for Data Point Storage
 // store location
 - (BOOL) didStoreLocation: (CLLocation *)location;
 // store accel data
 - (BOOL) didStoreAccelerometerData:(CMAccelerometerData *)accelData;
 // store wifi data FIXME: add api for this (lower priority)
 
+#pragma mark - API for Data Point Retreival
 // Data Point Retreival: A Classifier would probably want to use this, or the uploader
 - (NSArray *)getAllStoredLocationPoints; // return of CLLocation objects
 - (NSArray *)getAllStoredAccelerometerPoints; // return list of CMAccelerometerData
 
-
+#pragma mark -
 // Private properties, really here to support lazy initializtion etc
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
