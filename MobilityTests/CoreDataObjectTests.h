@@ -13,8 +13,11 @@
 #import "MobilityLogger.h"
 #import "Location.h"
 #import "Location+MJSONSerializable.h"
+#import "AccelData+MJSONSerializable.h"
+
 @interface CoreDataObjectTests : SenTestCase
 
 @property (nonatomic, retain) MobilityLogger *logger; // this will be used to get a context
 @property (nonatomic, retain) Location *location;
+@property (nonatomic, retain) AccelData *accel;
 @end

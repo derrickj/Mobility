@@ -9,7 +9,7 @@
 #import "CoreDataObjectTests.h"
 
 @implementation CoreDataObjectTests
-@synthesize logger, location;
+@synthesize logger, location, accel;
 
 - (void)setUp {
     self.logger = [[MobilityLogger alloc] init];
@@ -22,6 +22,16 @@
     self.location.accuracy = self.location.longitude;
     self.location.time = [NSNumber numberWithInt:23];
     self.location.timezone = @"blahtimezone";
+    
+    
+    // acceleration data
+    AccelData *a = [NSEntityDescription insertNewObjectForEntityForName:@"AccelData" inManagedObjectContext:self.logger.managedObjectContext];
+    a.x = [NSNumber numberWithDouble:1.2];
+    a.y = [NSNumber numberWithDouble:2.4];
+    a.z = [NSNumber numberWithDouble:4.8];
+    a.timestamp = [NSNumber numberWithInt:23];
+
+    self.accel = a;
 }
 
 - (void)tearDown {
@@ -29,6 +39,7 @@
     // (we dont' want to commit any of the objects added for testing purposes anyway)
     self.logger = nil;
     self.location = nil;
+    self.accel = nil;
 }
 
 - (void)testLocationHasValidJSONSerialization {
@@ -37,4 +48,12 @@
     STAssertTrue([NSJSONSerialization isValidJSONObject:[self.location serializableRepresentation]],
                  @"Location should have a valid json serialization representation");
 }
+
+- (void)testAccelDataHasValidJSONSerialization {
+    STAssertNotNil([self.accel serializableRepresentation],
+                   @"Acceleration should conform to JSON Serialization protocol");
+    STAssertTrue([NSJSONSerialization isValidJSONObject:[self.accel serializableRepresentation]],
+                 @"AccelData should have valid json serialization representation");
+}
+
 @end
