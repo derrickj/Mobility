@@ -13,6 +13,14 @@
 
 #pragma mark - API to Callers
 - (NSString *)modeOnlyJSONStringForDataPoints;
-#pragma mark -
+- (NSString *)sensorDataJSONStringForDataPoints;
 
+
+#pragma mark - Constants
+// http://stackoverflow.com/questions/538996/constants-in-objective-c
+extern NSString * const kMobilityStill;
+extern NSString * const kMobilityWalk;
+extern NSString * const kMobilityRun;
+extern NSString * const kMobilityBike;
+extern NSString * const kMobiltyDrive;
 @end

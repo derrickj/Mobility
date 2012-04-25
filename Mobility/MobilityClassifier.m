@@ -11,8 +11,23 @@
 #import "MobilityClassifier.h"
 
 @implementation MobilityClassifier
-
 #pragma mark - API to Callers -
-- (NSString *)modeOnlyJSONStringForDataPoints { return nil; }
-#pragma mark -
+- (NSString *)modeOnlyJSONStringForDataPoints {
+    //FIXME: Implement
+    // get location points from database
+    // convert to datapoints to dictionary representations
+    // include fake classification, don't classify for now, just "guess" the mode
+    // convert to json data return string
+    return nil;
+}
+
+- (NSString *)sensorDataJSONStringForDataPoints { return nil; } //FIXME: Implement
+
+
+#pragma mark - Constants
+NSString * const kMobilityStill = @"still";
+NSString * const kMobilityWalk = @"walk";
+NSString * const kMobilityRun = @"run";
+NSString * const kMobilityBike = @"bike";
+NSString * const kMobiltyDrive = @"drive";
 @end
