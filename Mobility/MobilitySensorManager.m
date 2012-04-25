@@ -15,9 +15,17 @@
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation {}//FIXME: Implement
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {} //FIXME: Implement
+           fromLocation:(CLLocation *)oldLocation {
+    // store the location. (maybe add an adaptive algorithm to improve power consumption later)
+    [self.logger didStoreLocation:newLocation];
+}
 
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+#ifdef DEBUG
+    NSLog(@"Location Manger failed with error: %@", [error localizedDescription]);
+    abort();
+#endif
+}
 
 #pragma mark -
 - (void)setLoggingLocation:(BOOL)newLoggingPreference {
