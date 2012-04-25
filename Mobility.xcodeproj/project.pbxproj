@@ -17,6 +17,7 @@
 		4909292015475336008630E9 /* Location+MJSONSerializable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4909291F15475336008630E9 /* Location+MJSONSerializable.m */; };
 		49092923154754AD008630E9 /* AccelData+MJSONSerializable.m in Sources */ = {isa = PBXBuildFile; fileRef = 49092922154754AD008630E9 /* AccelData+MJSONSerializable.m */; };
 		4909292D15475C06008630E9 /* CoreDataObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4909292C15475C06008630E9 /* CoreDataObjectTests.m */; };
+		490929311547ADE4008630E9 /* AccelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 490929301547ADE4008630E9 /* AccelData.m */; };
 		492C6A7A1471FA10002E7651 /* MobilityDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A781471FA10002E7651 /* MobilityDataModel.xcdatamodeld */; };
 		492C6A7B1471FA10002E7651 /* MobilityDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A781471FA10002E7651 /* MobilityDataModel.xcdatamodeld */; };
 		492C6A7F1471FBD8002E7651 /* MobilityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A7E1471FBD8002E7651 /* MobilityLogger.m */; };
@@ -25,7 +26,6 @@
 		492C6A831471FE36002E7651 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 492C6A811471FDFB002E7651 /* CoreLocation.framework */; };
 		4946B8BB14724B7600572463 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4946B8BA14724B7600572463 /* CoreMotion.framework */; };
 		4946B8BD14724B9400572463 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4946B8BA14724B7600572463 /* CoreMotion.framework */; };
-		499CBF4F1540CB4700F2D172 /* AccelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 499CBF4E1540CB4700F2D172 /* AccelData.m */; };
 		49A9083914C16B1500BA7911 /* MobilityLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A9083714C16B1500BA7911 /* MobilityLoggerTests.m */; };
 		49ACAA1D14725771008459C8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49ACAA1C14725771008459C8 /* CoreData.framework */; };
 		49ACAA1E14725782008459C8 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49ACAA1C14725771008459C8 /* CoreData.framework */; };
@@ -69,13 +69,13 @@
 		49092922154754AD008630E9 /* AccelData+MJSONSerializable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AccelData+MJSONSerializable.m"; sourceTree = "<group>"; };
 		4909292B15475C06008630E9 /* CoreDataObjectTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataObjectTests.h; sourceTree = "<group>"; };
 		4909292C15475C06008630E9 /* CoreDataObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataObjectTests.m; sourceTree = "<group>"; };
+		4909292F1547ADE4008630E9 /* AccelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelData.h; sourceTree = "<group>"; };
+		490929301547ADE4008630E9 /* AccelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelData.m; sourceTree = "<group>"; };
 		492C6A791471FA10002E7651 /* MobilityDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MobilityDataModel.xcdatamodel; sourceTree = "<group>"; };
 		492C6A7D1471FBD8002E7651 /* MobilityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobilityLogger.h; sourceTree = "<group>"; };
 		492C6A7E1471FBD8002E7651 /* MobilityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobilityLogger.m; sourceTree = "<group>"; };
 		492C6A811471FDFB002E7651 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4946B8BA14724B7600572463 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		499CBF4D1540CB4700F2D172 /* AccelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccelData.h; path = ../AccelData.h; sourceTree = "<group>"; };
-		499CBF4E1540CB4700F2D172 /* AccelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccelData.m; path = ../AccelData.m; sourceTree = "<group>"; };
 		49A9083614C16B1500BA7911 /* MobilityLoggerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobilityLoggerTests.h; sourceTree = "<group>"; };
 		49A9083714C16B1500BA7911 /* MobilityLoggerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobilityLoggerTests.m; sourceTree = "<group>"; };
 		49ACAA1C14725771008459C8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -163,6 +163,8 @@
 		49B205EA1471E4DF00534F33 /* Mobility */ = {
 			isa = PBXGroup;
 			children = (
+				4909292F1547ADE4008630E9 /* AccelData.h */,
+				490929301547ADE4008630E9 /* AccelData.m */,
 				49B205F31471E4DF00534F33 /* AppDelegate.h */,
 				49B205F41471E4DF00534F33 /* AppDelegate.m */,
 				49B205EB1471E4DF00534F33 /* Supporting Files */,
@@ -177,8 +179,6 @@
 				4900FD0C153FF235007AD025 /* MobilitySensorManager.m */,
 				4900FD11153FF898007AD025 /* MobilityClassifier.h */,
 				4900FD12153FF898007AD025 /* MobilityClassifier.m */,
-				499CBF4D1540CB4700F2D172 /* AccelData.h */,
-				499CBF4E1540CB4700F2D172 /* AccelData.m */,
 				49092909154743B8008630E9 /* MJSONSerializable.h */,
 				4909291E15475336008630E9 /* Location+MJSONSerializable.h */,
 				4909291F15475336008630E9 /* Location+MJSONSerializable.m */,
@@ -337,10 +337,10 @@
 				492C6A7F1471FBD8002E7651 /* MobilityLogger.m in Sources */,
 				4900FD0D153FF235007AD025 /* MobilitySensorManager.m in Sources */,
 				4900FD13153FF898007AD025 /* MobilityClassifier.m in Sources */,
-				499CBF4F1540CB4700F2D172 /* AccelData.m in Sources */,
 				4909291D15474916008630E9 /* Location.m in Sources */,
 				4909292015475336008630E9 /* Location+MJSONSerializable.m in Sources */,
 				49092923154754AD008630E9 /* AccelData+MJSONSerializable.m in Sources */,
+				490929311547ADE4008630E9 /* AccelData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
