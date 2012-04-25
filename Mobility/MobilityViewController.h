@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "MobilityLogger.h"
 #import "MobilitySensorManager.h"
-@interface MobilityViewController : UITableViewController
+@interface MobilityViewController : UITableViewController {
+    MobilityLogger *logger;
+}
 @property(nonatomic, retain) IBOutlet UITableViewCell *cell;
 @property(nonatomic, retain) IBOutlet UISwitch *loggingSwitch;
 @property (nonatomic, retain) IBOutlet MobilitySensorManager *sensorManager;

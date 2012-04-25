@@ -15,6 +15,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.sensorManager = [[[MobilitySensorManager alloc] init] autorelease];
+        logger = [[MobilityLogger alloc] init];
+        self.sensorManager.logger = logger;
     }
     return self;
 }
@@ -29,6 +31,7 @@
 
 - (void)dealloc {
     self.sensorManager = nil;
+    [logger release];
     [super dealloc];
 }
 
@@ -84,11 +87,7 @@
     if ([sender class] != [UISwitch class]) {
         return;
     }
-    if (((UISwitch *)sender).isOn == YES) {
-        [self.sensorManager startLoggingLocation];
-    } else {
-        [self.sensorManager stopLoggingLocation];
-    }
+    self.sensorManager.loggingLocation = [(UISwitch *)sender isOn];
 }
 
 #pragma mark - Table view data source
