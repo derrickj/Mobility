@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MobilityLogger.h"
+#import <CoreLocation/CLLocationManager.h>
 
-@interface MobilitySensorManager : NSObject {
-    // add location manager, etc
-    //        locationManager.purpose = @"Mobility logs your location periodically to upload to an Ohmage server later";
+@interface MobilitySensorManager : NSObject <CLLocationManagerDelegate> {
+    CLLocationManager *locationManager;
 }
 
-
-// turn on/off location logging //FIXME: make locationLogging a property (low priority)
-- (void)startLoggingLocation;
-- (void)stopLoggingLocation;
+#pragma mark - API To callers
+@property (nonatomic, assign, getter=isLoggingLocation) BOOL loggingLocation;
+// callers can check if location logging is on or off. The sensor manager should intelligently manage the actual use of
+// location services when on, but the USER may want to turn of location logging manually for batter reasons etc.
+@property (nonatomic, retain) MobilityLogger *logger; // Whoever instatiates this sensor manager is responsible for supplying the logger
 @end
