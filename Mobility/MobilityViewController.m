@@ -29,6 +29,7 @@
 
 - (void)dealloc {
     self.sensorManager = nil;
+    [super dealloc];
 }
 
 #pragma mark - View lifecycle
