@@ -44,7 +44,7 @@ NSString *SensorDataEntity = @"SensorData";
     l.longitude = [NSNumber numberWithDouble:location.coordinate.longitude];
 
     NSTimeInterval t = [location.timestamp timeIntervalSince1970];
-    l.time = [NSNumber numberWithDouble:t]; // timeinterval is typedef'ed to double
+    l.time = [NSNumber numberWithUnsignedLongLong:(unsigned long long)(t * 1000)]; // timeinterval is typedef'ed to double, and represents seconds. server expects integer milliseconds
     l.timezone = @"GMT"; // NSDate's timeIntervalSince1970 method is in GMT
     l.accuracy = [NSNumber numberWithDouble:location.horizontalAccuracy];
     l.provider = @"iOS Core Location";
