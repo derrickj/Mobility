@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MobilityViewController.h"
+#import "MobilityClassifier.h"
 
 @implementation AppDelegate
 
@@ -90,9 +91,12 @@
     NSURL *fileURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"data.txt"]];
 
     NSError *error = nil;
-    MobilityLogger *logger = [[MobilityLogger alloc] init];
-    [[logger jsonRepresentationForDB] writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
-    [logger release];
+    MobilityClassifier *classifier = [[MobilityClassifier alloc] init];
+    classifier.logger = [[MobilityLogger alloc] init];
+    NSString *jsonString = [classifier modeOnlyJSONStringForDataPoints];
+    NSLog(@"data : %@", jsonString);
+    [jsonString writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    [classifier release];
     if (error) {
         NSLog(@"error writing file: %@", error);
         abort();

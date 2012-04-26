@@ -17,7 +17,9 @@
     [d setValue:self.provider forKey:@"provider"];
     [d setValue:self.time forKey:@"time"];
     [d setValue:self.timezone forKey:@"timezone"];
-    [d setValue:self.uuid forKey:@"id"]; // NOTE: use "id" for the key, because that's what Ohmage server expects
+
+    // omitting self.uuid becasue Ohmage server doesn't expect it inside location object.
+    // classifier uses the uuid to make it's own packets
     return [d autorelease];
 }
 @end

@@ -8,12 +8,14 @@
 //  and output JSON strings suitable for upload to Ohmage Server, when the appropriate method is called of course
 
 #import <Foundation/Foundation.h>
-
+#import "MobilityLogger.h"
 @interface MobilityClassifier : NSObject
 
 #pragma mark - API to Callers
 - (NSString *)modeOnlyJSONStringForDataPoints;
 - (NSString *)sensorDataJSONStringForDataPoints;
+
+@property (nonatomic, retain) MobilityLogger* logger;
 
 
 #pragma mark - Constants
