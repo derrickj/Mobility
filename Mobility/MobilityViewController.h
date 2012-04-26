@@ -12,8 +12,10 @@
 @interface MobilityViewController : UITableViewController {
     MobilityLogger *logger;
 }
-@property(nonatomic, retain) IBOutlet UITableViewCell *cell;
-@property(nonatomic, retain) IBOutlet UISwitch *loggingSwitch;
+@property(nonatomic, retain) IBOutlet UITableViewCell *locationCell;
+@property (nonatomic, retain) IBOutlet UITableViewCell *accelerometerCell;
+@property(nonatomic, retain) IBOutlet UISwitch *locationSwitch;
+@property(nonatomic, retain) IBOutlet UISwitch *accelerometerSwitch;
 @property (nonatomic, retain) IBOutlet MobilitySensorManager *sensorManager;
 
 - (IBAction)userChangedLoggingSwitch:(id)sender;

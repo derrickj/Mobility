@@ -59,6 +59,7 @@ NSString *SensorDataEntity = @"SensorData";
 }
 // store accel data
 - (BOOL) didStoreAccelerometerData:(CMAccelerometerData *)accelData {
+    NSLog(@"Storing Accel Data: %@", accelData);
     AccelData *a = [NSEntityDescription insertNewObjectForEntityForName:AccelDataEntity
                                                  inManagedObjectContext:self.managedObjectContext];
     a.timestamp = [NSNumber numberWithDouble:accelData.timestamp];

@@ -10,7 +10,7 @@
 #import "MobilitySensorManager.h"
 
 @implementation MobilitySensorManager
-@synthesize loggingLocation, logger;
+@synthesize loggingLocation, logger, loggingAccelerometer;
 
 #pragma mark - CLLocationManagerDelegate
 - (void)locationManager:(CLLocationManager *)manager
@@ -18,6 +18,9 @@
            fromLocation:(CLLocation *)oldLocation {
     // store the location. (maybe add an adaptive algorithm to improve power consumption later)
     [self.logger didStoreLocation:newLocation];
+
+    // grab accelerometer data while (we're running in the background)
+    [self.logger didStoreAccelerometerData:[motionManager accelerometerData]];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -40,17 +43,29 @@
     }
 }
 
+- (void)setLoggingAccelerometer:(BOOL)newLoggingPreference {
+    loggingAccelerometer = newLoggingPreference;
+    if (newLoggingPreference == NO) {
+        [motionManager stopAccelerometerUpdates];
+    } else {
+        [motionManager startAccelerometerUpdates];
+    }
+}
+
 #pragma mark - Memory Management
 - (id) init {
     if (self = [super init]) {
         locationManager = [[CLLocationManager alloc] init];
         locationManager.delegate = self;
         locationManager.purpose = @"Mobility logs your location periodically to upload to an Ohmage server later";
+
+        motionManager = [[CMMotionManager alloc] init];
     }
     return self;
 }
 - (void) dealloc {
     [locationManager release];
+    [motionManager release];
     self.logger = nil;
     [super dealloc];
 }

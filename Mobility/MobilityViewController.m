@@ -9,7 +9,7 @@
 #import "MobilityViewController.h"
 
 @implementation MobilityViewController
-@synthesize cell, loggingSwitch, sensorManager;
+@synthesize locationCell, accelerometerCell, locationSwitch, accelerometerSwitch, sensorManager;
 
 #pragma mark - Memory Management
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -40,6 +40,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    locationCell.textLabel.text = @"Location Logging";
+    accelerometerCell.textLabel.text = @"Accelerometer Logging";
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -87,7 +89,12 @@
     if ([sender class] != [UISwitch class]) {
         return;
     }
-    self.sensorManager.loggingLocation = [(UISwitch *)sender isOn];
+    BOOL value = [(UISwitch *)sender isOn];
+    if (sender == accelerometerSwitch) {
+        self.sensorManager.loggingAccelerometer = value;
+    } else if (sender == locationSwitch) {
+        self.sensorManager.loggingLocation = value;
+    }
 }
 
 #pragma mark - Table view data source
@@ -101,13 +108,30 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.cell.textLabel.text = @"Location Logging";
-    return self.cell;
+    UITableViewCell *cell;
+    NSString *reuseID = @"Cell";
+    switch (indexPath.row) {
+        case 0:
+            cell = self.locationCell;
+            break;
+        case 1 :
+            cell = self.accelerometerCell;
+            break;
+        default:
+            // Shouldn't get here
+            cell = [tableView dequeueReusableCellWithIdentifier:reuseID];
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseID];
+            }
+            cell.textLabel.text = @"Something's Wrong Here";
+            break;
+    }
+    return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
