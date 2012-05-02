@@ -95,11 +95,41 @@ NSString *SensorDataEntity = @"SensorData";
     }
     return [[results retain] autorelease];
 }
+
+// return ALL stored accel points
 - (NSArray *)storedAccelerometerPoints {
-    return nil;
-}// return list of CMAccelerometerData
+    return [[[self storedAccelerometerPointsFromDate:nil toDate:nil] retain] autorelease];
+}
+
+// return stored accel points from earliestdate (inclusive) to latest (exclusive)
+// nil earliest places no lower bound on date range, likewise for latest
 - (NSArray *)storedAccelerometerPointsFromDate:(NSDate *)earliest toDate:(NSDate *)latest {
-    return nil;
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:AccelDataEntity];
+    NSSortDescriptor *sortByDate = [NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:YES];
+   
+    NSPredicate *dateRangePredicate = nil;
+    if (earliest != nil && latest != nil) {
+        dateRangePredicate = [NSPredicate predicateWithFormat:@"(timestamp >= %@) AND (timestamp < %@)", earliest, latest];
+    } else if (earliest != nil) {
+        dateRangePredicate = [NSPredicate predicateWithFormat:@"timestamp >= %@", earliest];
+    } else if (latest != nil) {
+        dateRangePredicate = [NSPredicate predicateWithFormat:@"timestamp < %@", latest];
+    }
+    if (dateRangePredicate) {
+        [fetchRequest setPredicate:dateRangePredicate];
+    }
+
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortByDate]];
+
+    NSError *error = nil;
+    NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+#ifdef DEBUG
+        NSLog(@"Couldn't fetch Acclerometer points: %@", [error localizedDescription]);
+        abort();
+#endif
+    }
+    return [[results retain] autorelease];
 }
 
 
