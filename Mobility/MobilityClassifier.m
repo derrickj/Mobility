@@ -26,8 +26,7 @@
         // this packet should follow the mode_only format
         NSMutableDictionary *packet = [[NSMutableDictionary alloc] init];
         [packet setValue:location.uuid forKey:@"id"];
-        // timeIntervalSince1970 is in seconds, server expects milliseconds, no decimal
-        unsigned long long t = (unsigned long long)([[NSDate date] timeIntervalSince1970] * 1000);
+        unsigned long long t = [MobilityLogger millisecondsSinceUnixEpoch];
         [packet setValue:[NSNumber numberWithUnsignedLongLong:t] forKey:@"time"];
         [packet setValue:@"GMT" forKey:@"timezone"]; // NSDate timeIntervalSince1970 is based on GMT
         [packet setValue:@"valid" forKey:@"location_status"];

@@ -141,6 +141,11 @@ NSString *SensorDataEntity = @"SensorData";
     return [(NSString *)cfString autorelease];;
 }
 
++ (unsigned long long)millisecondsSinceUnixEpoch {
+    // timeIntervalSince1970 is in seconds, typdefed to double, server expects milliseconds, no decimal point
+    return (unsigned long long)([[NSDate date] timeIntervalSince1970] * 1000);
+}
+
 #pragma mark - Core Data Stack
 // http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/CoreDataUtilityTutorial/Articles/05_createStack.html
 - (NSManagedObjectModel *) managedObjectModel {    
