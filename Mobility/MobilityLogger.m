@@ -80,7 +80,7 @@ NSString *SensorDataEntity = @"SensorData";
 // store wifi data FIXME: add api for this (lower priority)
 
 // Data Point Retreival: A Classifier would probably want to use this, or the uploader
-- (NSArray *)getAllStoredLocationPoints {
+- (NSArray *)storedLocationPoints {
     NSFetchRequest *fetchReq = [NSFetchRequest fetchRequestWithEntityName:LocationEntity];
     NSSortDescriptor *sortByTime = [NSSortDescriptor sortDescriptorWithKey:@"time" ascending:YES];
     [fetchReq setSortDescriptors:[NSArray arrayWithObject:sortByTime]];
@@ -95,7 +95,7 @@ NSString *SensorDataEntity = @"SensorData";
     }
     return [[results retain] autorelease];
 }
-- (NSArray *)getAllStoredAccelerometerPoints { return nil; }// return list of CMAccelerometerData
+- (NSArray *)storedAccelerometerPoints { return nil; }// return list of CMAccelerometerData
 
 
 

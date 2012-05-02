@@ -17,7 +17,7 @@
 #pragma mark - API to Callers -
 - (NSString *)modeOnlyJSONStringForDataPoints {
     // get location points from database
-    NSArray *locationDataPoints = [self.logger getAllStoredLocationPoints];
+    NSArray *locationDataPoints = [self.logger storedLocationPoints];
 
 
     // convert to datapoints to dictionary representations

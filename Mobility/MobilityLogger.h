@@ -27,8 +27,8 @@
 
 #pragma mark - API for Data Point Retreival
 // Data Point Retreival: A Classifier would probably want to use this, or the uploader
-- (NSArray *)getAllStoredLocationPoints; // return of CLLocation objects
-- (NSArray *)getAllStoredAccelerometerPoints; // return list of CMAccelerometerData
+- (NSArray *)storedLocationPoints; // return of CLLocation objects
+- (NSArray *)storedAccelerometerPoints; // return list of CMAccelerometerData
 
 #pragma mark -
 // Private properties, really here to support lazy initializtion etc
