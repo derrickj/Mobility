@@ -29,6 +29,7 @@
 // Data Point Retreival: A Classifier would probably want to use this, or the uploader
 - (NSArray *)storedLocationPoints; // return of CLLocation objects
 - (NSArray *)storedAccelerometerPoints; // return list of CMAccelerometerData
+- (NSArray *)storedAccelerometerPointsFromDate:(NSDate *)earliest toDate:(NSDate *)latest;
 
 #pragma mark -
 // Private properties, really here to support lazy initializtion etc

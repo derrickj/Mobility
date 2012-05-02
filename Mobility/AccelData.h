@@ -15,6 +15,6 @@
 @property (nonatomic, retain) NSNumber * x;
 @property (nonatomic, retain) NSNumber * y;
 @property (nonatomic, retain) NSNumber * z;
-@property (nonatomic, retain) NSNumber * timestamp;
+@property (nonatomic, retain) NSDate * timestamp;
 
 @end

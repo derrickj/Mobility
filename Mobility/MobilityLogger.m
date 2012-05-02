@@ -62,7 +62,7 @@ NSString *SensorDataEntity = @"SensorData";
     NSLog(@"Storing Accel Data: %@", accelData);
     AccelData *a = [NSEntityDescription insertNewObjectForEntityForName:AccelDataEntity
                                                  inManagedObjectContext:self.managedObjectContext];
-    a.timestamp = [NSNumber numberWithDouble:accelData.timestamp];
+    a.timestamp = [NSDate date];
     CMAcceleration cma = accelData.acceleration;
     a.x = [NSNumber numberWithDouble:cma.x];
     a.y = [NSNumber numberWithDouble:cma.y];
@@ -95,8 +95,12 @@ NSString *SensorDataEntity = @"SensorData";
     }
     return [[results retain] autorelease];
 }
-- (NSArray *)storedAccelerometerPoints { return nil; }// return list of CMAccelerometerData
-
+- (NSArray *)storedAccelerometerPoints {
+    return nil;
+}// return list of CMAccelerometerData
+- (NSArray *)storedAccelerometerPointsFromDate:(NSDate *)earliest toDate:(NSDate *)latest {
+    return nil;
+}
 
 
 #pragma mark - helpers
