@@ -90,7 +90,7 @@
         [packet setValue:@"sensor_data" forKey:@"subtype"];
         [packet setValue:kMobilityStill forKey:@"mode"];
 //        //[packet setValue:<#(id)#> forKey:@"speed"]; // double FIXME: add speed, probably from location
-        [packet setValue:serializabbleAccelPoints forKey:@"accel_data"]; // array of AccelData objects //FIXME: causing json serializtion crash
+        [packet setValue:serializabbleAccelPoints forKey:@"accel_data"]; // array of AccelData objects
 //        //[packet setValue:<#(id)#> forKey:@"wifi_data"];
 
         [serializabbleAccelPoints release]; // this get reassigned every iteration of Location Points
