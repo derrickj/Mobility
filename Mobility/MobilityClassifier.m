@@ -83,6 +83,7 @@
         // build up Sensor Data Packet
         NSMutableDictionary *packet = [[NSMutableDictionary alloc] init];
 
+        [packet setValue:location.uuid forKey:@"id"];
         [packet setValue:[NSNumber numberWithUnsignedLongLong:[MobilityLogger millisecondsSinceUnixEpoch]] forKey:@"time"];
         [packet setValue:@"GMT" forKey:@"timezone"]; // above call is always in GMT
         [packet setValue:@"valid" forKey:@"location_status"];
@@ -91,7 +92,13 @@
         [packet setValue:kMobilityStill forKey:@"mode"];
         [packet setValue:location.speed forKey:@"speed"];
         [packet setValue:serializabbleAccelPoints forKey:@"accel_data"]; // array of AccelData objects
-//        //[packet setValue:<#(id)#> forKey:@"wifi_data"];
+        // empty "dummy" wifi dat object for now.
+        NSDictionary *wifi_data = [NSDictionary
+                                   dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedLongLong:[MobilityLogger millisecondsSinceUnixEpoch]],@"time",
+                                   @"GMT", @"timezone",
+                                   [NSArray array], @"scan",
+                                   nil];
+        [packet setValue:wifi_data forKey:@"wifi_data"]; // Set empty array for now.
 
         [serializabbleAccelPoints release]; // this get reassigned every iteration of Location Points
         [serializableDataPoints addObject:packet];
