@@ -10,6 +10,7 @@
 
 #import "MobilityClassifier.h"
 #import "Location+MJSONSerializable.h"
+#import "AccelData+MJSONSerializable.h"
 
 @implementation MobilityClassifier
 @synthesize logger;
@@ -61,8 +62,73 @@
     return [jsonString autorelease];
 }
 
-- (NSString *)sensorDataJSONStringForDataPoints { return nil; } //FIXME: Implement
+- (NSString *)sensorDataJSONStringForDataPoints {
+    // get all every location point, find accel point that goes with it, put in packet
+    NSArray *locationPoints = [self.logger storedLocationPoints];
+    
+    NSMutableArray *serializableDataPoints = [[NSMutableArray alloc] init];
+    Location *previousLocation = nil; // keep track of previous location for accel date range queries
+    for (Location *location in locationPoints) {
+        // dates stored as milliseconds since unix epoch in Location
+        NSDate *from = nil;
+        if (previousLocation) {
+            from = [NSDate dateWithTimeIntervalSince1970:[previousLocation.time doubleValue]/1000.0];
+        }
+        NSDate *to = [NSDate dateWithTimeIntervalSince1970:[location.time doubleValue]/1000.0];
+        NSMutableArray *serializabbleAccelPoints = [[NSMutableArray alloc] init];
+        for (AccelData *a in [self.logger storedAccelerometerPointsFromDate:from toDate:to]) {
+            [NSJSONSerialization isValidJSONObject:[a serializableRepresentation]];
+            [serializabbleAccelPoints addObject:[a serializableRepresentation]];
+        }
+        // build up Sensor Data Packet
+        NSMutableDictionary *packet = [[NSMutableDictionary alloc] init];
 
+        [packet setValue:[NSNumber numberWithUnsignedLongLong:[MobilityLogger millisecondsSinceUnixEpoch]] forKey:@"time"];
+        [packet setValue:@"GMT" forKey:@"timezone"]; // above call is always in GMT
+        [packet setValue:@"valid" forKey:@"location_status"];
+        [packet setValue:[location serializableRepresentation] forKey:@"location"];
+        [packet setValue:@"sensor_data" forKey:@"subtype"];
+        [packet setValue:kMobilityStill forKey:@"mode"];
+//        //[packet setValue:<#(id)#> forKey:@"speed"]; // double FIXME: add speed, probably from location
+        [packet setValue:serializabbleAccelPoints forKey:@"accel_data"]; // array of AccelData objects //FIXME: causing json serializtion crash
+//        //[packet setValue:<#(id)#> forKey:@"wifi_data"];
+
+        [serializabbleAccelPoints release]; // this get reassigned every iteration of Location Points
+        [serializableDataPoints addObject:packet];
+        [packet release];
+        previousLocation = location;
+    }
+
+
+
+    NSString *jsonString = nil;
+    NSError *error = nil;
+    NSJSONWritingOptions opts = 0;
+
+#ifdef DEBUG
+    opts = NSJSONWritingPrettyPrinted;
+#endif
+
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:serializableDataPoints options:opts error:&error];
+    [serializableDataPoints release];
+    if (error) {
+        NSLog(@"Error parsing json: %@", [error localizedDescription]);
+#ifdef DEBUG
+        abort();
+#endif
+    } else {
+        jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    }
+
+
+    return [jsonString autorelease];
+}
+#pragma mark -
+- (unsigned long long)millisecondsSinceUnixEpoch {
+    // timeIntervalSince1970 is in seconds, server expects milliseconds, no decimal
+    unsigned long long t = (unsigned long long)([[NSDate date] timeIntervalSince1970] * 1000);
+    return t;
+}
 
 #pragma mark - Constants
 NSString * const kMobilityStill = @"still";

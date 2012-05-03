@@ -93,7 +93,8 @@
     NSError *error = nil;
     MobilityClassifier *classifier = [[MobilityClassifier alloc] init];
     classifier.logger = [[MobilityLogger alloc] init];
-    NSString *jsonString = [classifier modeOnlyJSONStringForDataPoints];
+//    NSString *jsonString = [classifier modeOnlyJSONStringForDataPoints];
+    NSString *jsonString = [classifier sensorDataJSONStringForDataPoints];
     NSLog(@"data : %@", jsonString);
     [jsonString writeToURL:fileURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
     [classifier release];
