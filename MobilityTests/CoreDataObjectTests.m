@@ -29,7 +29,7 @@
     a.x = [NSNumber numberWithDouble:1.2];
     a.y = [NSNumber numberWithDouble:2.4];
     a.z = [NSNumber numberWithDouble:4.8];
-    a.timestamp = [NSNumber numberWithInt:23];
+    a.timestamp = [NSDate date];
 
     self.accel = a;
 }

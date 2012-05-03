@@ -43,7 +43,7 @@
 - (void)testLocationRetreival {
     // fetch request should succeed. This is less than best practice, wrtigin tests that depend on database
     // but will not try to test against the contents of that data, so maybe that is a redeeming quality
-    STAssertNotNil([self.logger getAllStoredLocationPoints], @"Should have retreived some location points");
+    STAssertNotNil([self.logger storedLocationPoints], @"Should have retreived some location points");
 }
 
 @end
