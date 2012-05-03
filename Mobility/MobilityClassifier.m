@@ -89,7 +89,7 @@
         [packet setValue:[location serializableRepresentation] forKey:@"location"];
         [packet setValue:@"sensor_data" forKey:@"subtype"];
         [packet setValue:kMobilityStill forKey:@"mode"];
-//        //[packet setValue:<#(id)#> forKey:@"speed"]; // double FIXME: add speed, probably from location
+        [packet setValue:location.speed forKey:@"speed"];
         [packet setValue:serializabbleAccelPoints forKey:@"accel_data"]; // array of AccelData objects
 //        //[packet setValue:<#(id)#> forKey:@"wifi_data"];
 

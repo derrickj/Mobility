@@ -18,6 +18,7 @@
 		49092923154754AD008630E9 /* AccelData+MJSONSerializable.m in Sources */ = {isa = PBXBuildFile; fileRef = 49092922154754AD008630E9 /* AccelData+MJSONSerializable.m */; };
 		4909292D15475C06008630E9 /* CoreDataObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4909292C15475C06008630E9 /* CoreDataObjectTests.m */; };
 		490929311547ADE4008630E9 /* AccelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 490929301547ADE4008630E9 /* AccelData.m */; };
+		490BA9BB15520CAA008D2ECA /* Location+HandWrittenMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 490BA9BA15520CAA008D2ECA /* Location+HandWrittenMethods.m */; };
 		492C6A7A1471FA10002E7651 /* MobilityDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A781471FA10002E7651 /* MobilityDataModel.xcdatamodeld */; };
 		492C6A7B1471FA10002E7651 /* MobilityDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A781471FA10002E7651 /* MobilityDataModel.xcdatamodeld */; };
 		492C6A7F1471FBD8002E7651 /* MobilityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A7E1471FBD8002E7651 /* MobilityLogger.m */; };
@@ -71,6 +72,8 @@
 		4909292C15475C06008630E9 /* CoreDataObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataObjectTests.m; sourceTree = "<group>"; };
 		4909292F1547ADE4008630E9 /* AccelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelData.h; sourceTree = "<group>"; };
 		490929301547ADE4008630E9 /* AccelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelData.m; sourceTree = "<group>"; };
+		490BA9B915520CA9008D2ECA /* Location+HandWrittenMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Location+HandWrittenMethods.h"; sourceTree = "<group>"; };
+		490BA9BA15520CAA008D2ECA /* Location+HandWrittenMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Location+HandWrittenMethods.m"; sourceTree = "<group>"; };
 		492C6A791471FA10002E7651 /* MobilityDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MobilityDataModel.xcdatamodel; sourceTree = "<group>"; };
 		492C6A7D1471FBD8002E7651 /* MobilityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobilityLogger.h; sourceTree = "<group>"; };
 		492C6A7E1471FBD8002E7651 /* MobilityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MobilityLogger.m; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 				4909291F15475336008630E9 /* Location+MJSONSerializable.m */,
 				49092921154754AD008630E9 /* AccelData+MJSONSerializable.h */,
 				49092922154754AD008630E9 /* AccelData+MJSONSerializable.m */,
+				490BA9B915520CA9008D2ECA /* Location+HandWrittenMethods.h */,
+				490BA9BA15520CAA008D2ECA /* Location+HandWrittenMethods.m */,
 			);
 			path = Mobility;
 			sourceTree = "<group>";
@@ -341,6 +346,7 @@
 				4909292015475336008630E9 /* Location+MJSONSerializable.m in Sources */,
 				49092923154754AD008630E9 /* AccelData+MJSONSerializable.m in Sources */,
 				490929311547ADE4008630E9 /* AccelData.m in Sources */,
+				490BA9BB15520CAA008D2ECA /* Location+HandWrittenMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

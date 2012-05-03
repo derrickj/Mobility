@@ -15,6 +15,7 @@
 @dynamic latitude;
 @dynamic longitude;
 @dynamic provider;
+@dynamic speed;
 @dynamic time;
 @dynamic timezone;
 @dynamic uuid;

@@ -32,7 +32,7 @@
 - (NSArray *)storedAccelerometerPointsFromDate:(NSDate *)earliest toDate:(NSDate *)latest;
 
 + (unsigned long long)millisecondsSinceUnixEpoch; // GMT timezone
-
++ (NSString *)generateRandomUUID;
 #pragma mark -
 // Private properties, really here to support lazy initializtion etc
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;

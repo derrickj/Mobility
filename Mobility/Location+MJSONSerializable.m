@@ -20,6 +20,7 @@
 
     // omitting self.uuid becasue Ohmage server doesn't expect it inside location object.
     // classifier uses the uuid to make it's own packets
+    // omitting self.speed as well, because it's expected outside of the location object by server
     return [d autorelease];
 }
 @end

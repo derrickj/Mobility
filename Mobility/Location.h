@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSString * provider;
+@property (nonatomic, retain) NSNumber * speed;
 @property (nonatomic, retain) NSNumber * time;
 @property (nonatomic, retain) NSString * timezone;
 @property (nonatomic, retain) NSString * uuid;

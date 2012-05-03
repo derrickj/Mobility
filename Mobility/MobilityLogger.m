@@ -8,6 +8,7 @@
 
 #import "MobilityLogger.h"
 #import "Location.h"
+#import "Location+HandWrittenMethods.h"
 #import "AccelData.h"
 
 // entity names defined here to avoid typos from repeatingly typing literal nsstring
@@ -39,15 +40,7 @@ NSString *SensorDataEntity = @"SensorData";
     // create new location object for database
     Location *l = [NSEntityDescription insertNewObjectForEntityForName:LocationEntity inManagedObjectContext:self.managedObjectContext];
     // set values
-    l.uuid = [MobilityLogger generateRandomUUID]; //the ohmage server expect this to be named "id", but "id" is a keyword in Obj-C
-    l.latitude = [NSNumber numberWithDouble:location.coordinate.latitude];
-    l.longitude = [NSNumber numberWithDouble:location.coordinate.longitude];
-
-    NSTimeInterval t = [location.timestamp timeIntervalSince1970];
-    l.time = [NSNumber numberWithUnsignedLongLong:(unsigned long long)(t * 1000)]; // timeinterval is typedef'ed to double, and represents seconds. server expects integer milliseconds
-    l.timezone = @"GMT"; // NSDate's timeIntervalSince1970 method is in GMT
-    l.accuracy = [NSNumber numberWithDouble:location.horizontalAccuracy];
-    l.provider = @"iOS Core Location";
+    [l setFieldsFromCLLocation:location];
 
     // save the managed object context (ie commit to database)
     NSError *error = nil;
