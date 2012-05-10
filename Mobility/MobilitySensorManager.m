@@ -59,6 +59,9 @@
         locationManager.delegate = self;
         locationManager.purpose = @"Mobility logs your location periodically to upload to an Ohmage server later";
 
+        locationManager.distanceFilter = kCLDistanceFilterNone;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+
         motionManager = [[CMMotionManager alloc] init];
     }
     return self;
