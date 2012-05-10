@@ -27,9 +27,8 @@
         // this packet should follow the mode_only format
         NSMutableDictionary *packet = [[NSMutableDictionary alloc] init];
         [packet setValue:location.uuid forKey:@"id"];
-        unsigned long long t = [MobilityLogger millisecondsSinceUnixEpoch];
-        [packet setValue:[NSNumber numberWithUnsignedLongLong:t] forKey:@"time"];
-        [packet setValue:@"GMT" forKey:@"timezone"]; // NSDate timeIntervalSince1970 is based on GMT
+        [packet setValue:location.time forKey:@"time"];
+        [packet setValue:location.timezone forKey:@"timezone"];
         [packet setValue:@"valid" forKey:@"location_status"];
         [packet setValue:[location serializableRepresentation] forKey:@"location"];
         [packet setValue:@"mode_only" forKey:@"subtype"];
@@ -84,8 +83,8 @@
         NSMutableDictionary *packet = [[NSMutableDictionary alloc] init];
 
         [packet setValue:location.uuid forKey:@"id"];
-        [packet setValue:[NSNumber numberWithUnsignedLongLong:[MobilityLogger millisecondsSinceUnixEpoch]] forKey:@"time"];
-        [packet setValue:@"GMT" forKey:@"timezone"]; // above call is always in GMT
+        [packet setValue:location.time forKey:@"time"];
+        [packet setValue:location.timezone forKey:@"timezone"];
         [packet setValue:@"valid" forKey:@"location_status"];
         [packet setValue:[location serializableRepresentation] forKey:@"location"];
         [packet setValue:@"sensor_data" forKey:@"subtype"];
