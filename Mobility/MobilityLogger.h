@@ -31,7 +31,7 @@
 - (NSArray *)storedAccelerometerPoints; // return list of CMAccelerometerData
 - (NSArray *)storedAccelerometerPointsFromDate:(NSDate *)earliest toDate:(NSDate *)latest;
 
-+ (unsigned long long)millisecondsSinceUnixEpoch; // GMT timezone
++ (unsigned long long)millisecondsSinceUnixEpoch; // Local timezone
 + (NSString *)generateRandomUUID;
 #pragma mark -
 // Private properties, really here to support lazy initializtion etc

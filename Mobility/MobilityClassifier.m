@@ -95,10 +95,10 @@
         // data object requires "mode" in addition ot the top level packet, just set it the same
         [dataDict setValue:[packet valueForKey:@"mode"] forKey:@"mode"];
         NSDictionary *wifi_data = [NSDictionary
-                                   dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedLongLong:[MobilityLogger millisecondsSinceUnixEpoch]],@"time",
-                                   @"GMT", @"timezone",
+                                   dictionaryWithObjectsAndKeys:location.time, @"time",
+                                   location.timezone, @"timezone",
                                    [NSArray array], @"scan",
-                                   nil];
+                                   nil]; // note: nil specifies end of object/key pairs, NOT setting scan to nil
 
         [dataDict setValue:location.speed forKey:@"speed"];
         [dataDict setValue:serializabbleAccelPoints forKey:@"accel_data"];

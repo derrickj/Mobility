@@ -19,7 +19,7 @@
     self.speed = [NSNumber numberWithDouble:location.speed];
     NSTimeInterval t = [location.timestamp timeIntervalSince1970];
     self.time = [NSNumber numberWithUnsignedLongLong:(unsigned long long)(t * 1000)]; // timeinterval is typedef'ed to double, and represents seconds. server expects integer milliseconds
-    self.timezone = @"GMT"; // NSDate's timeIntervalSince1970 method is in GMT
+    self.timezone = [[NSTimeZone systemTimeZone] name];
     self.accuracy = [NSNumber numberWithDouble:location.horizontalAccuracy];
     self.provider = @"iOS Core Location";   
 }
