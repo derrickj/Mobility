@@ -100,7 +100,6 @@
     [classifier release];
     if (error) {
         NSLog(@"error writing file: %@", error);
-        abort();
     }
     
     // wrote data needed to file. now let's ask user to open it in another app.
@@ -114,7 +113,6 @@
     
     if (![controller presentOpenInMenuFromRect:rect inView:currentView animated:YES]) {
         NSLog(@"Failed to open doc in another app");
-        abort();
     }
     return YES;
 }

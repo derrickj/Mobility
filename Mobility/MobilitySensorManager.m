@@ -25,8 +25,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
 #ifdef DEBUG
-    NSLog(@"Location Manger failed with error: %@", [error localizedDescription]);
-    abort();
+    NSLog(@"Location Manager failed with error: %@", [error localizedDescription]);
 #endif
 }
 

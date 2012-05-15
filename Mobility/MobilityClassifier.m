@@ -50,9 +50,6 @@
     NSData *jsonBytes = [NSJSONSerialization dataWithJSONObject:serializableDataPoints options:opts error:&error];
     if (error) {
         NSLog(@"Failed to convert Data Points to JSON: %@", [error localizedDescription]);
-#ifdef DEBUG
-        abort();
-#endif
     } else {
         jsonString = [[NSString alloc] initWithData:jsonBytes encoding:NSUTF8StringEncoding];
     }
@@ -127,9 +124,6 @@
     [serializableDataPoints release];
     if (error) {
         NSLog(@"Error parsing json: %@", [error localizedDescription]);
-#ifdef DEBUG
-        abort();
-#endif
     } else {
         jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     }

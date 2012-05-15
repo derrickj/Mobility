@@ -46,7 +46,7 @@ NSString *SensorDataEntity = @"SensorData";
     NSError *error = nil;
     [self.managedObjectContext save:&error];
     if (error) {
-        abort(); // should only do this in testing, not for shipping code
+        NSLog(@"error for storing location: %@", [error localizedDescription]);
     }
     return error == nil;
 }
@@ -64,7 +64,9 @@ NSString *SensorDataEntity = @"SensorData";
     NSError *error = nil;
     [self.managedObjectContext save:&error];
     if (error) {
-        abort();
+#ifdef DEBUG
+        NSLog(@"AccelError : %@", [error localizedDescription]);
+#endif
     }
 
     return error == nil; // return YES if no error
@@ -82,9 +84,6 @@ NSString *SensorDataEntity = @"SensorData";
     NSArray *results = [self.managedObjectContext executeFetchRequest:fetchReq error:&error];
     if (error) {
         NSLog(@"Error executing fetch request: %@", [error localizedDescription]);
-#if DEBUG
-        abort();
-#endif
     }
     return [[results retain] autorelease];
 }
@@ -119,7 +118,6 @@ NSString *SensorDataEntity = @"SensorData";
     if (error) {
 #ifdef DEBUG
         NSLog(@"Couldn't fetch Acclerometer points: %@", [error localizedDescription]);
-        abort();
 #endif
     }
     return [[results retain] autorelease];
@@ -172,7 +170,6 @@ NSString *SensorDataEntity = @"SensorData";
     if (dataStore == nil) {
         // FIXME: never programmatically quit in shipping code. Inform user there's an unrecoverable error
         NSLog(@"error with persistent store: %@", [error localizedDescription]);
-        abort();
     }
     return _managedObjectContext;
 }
