@@ -20,7 +20,10 @@
     [self.logger didStoreLocation:newLocation];
 
     // grab accelerometer data while (we're running in the background)
-    [self.logger didStoreAccelerometerData:[motionManager accelerometerData]];
+    // need about 25 points, over 1 seconds, let's see if we can get that.
+    for (int i = 0; i < 25; i++){
+        [self.logger didStoreAccelerometerData:[motionManager accelerometerData]];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
