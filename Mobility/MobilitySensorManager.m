@@ -24,6 +24,11 @@
     for (int i = 0; i < 25; i++){
         [self.logger didStoreAccelerometerData:[motionManager accelerometerData]];
     }
+    
+    // get current battery state and ask logger to save it
+    // note make sure device.batteryLoggingEnable = YES;
+    [self.logger didLogCurrentBatteryLevel:[[UIDevice currentDevice] batteryLevel]];
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -65,6 +70,8 @@
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
 
         motionManager = [[CMMotionManager alloc] init];
+        
+        [[UIDevice currentDevice] setBatteryMonitoringEnabled:YES];
     }
     return self;
 }

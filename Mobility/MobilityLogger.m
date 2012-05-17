@@ -73,7 +73,14 @@ NSString *SensorDataEntity = @"SensorData";
 }
 
 // store wifi data FIXME: add api for this (lower priority)
+- (BOOL) didLogCurrentBatteryLevel:(float)currentLevel {
+    NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
+    NSString *logMsg = [NSString stringWithFormat:@"%f,%.2f", timestamp, currentLevel];
+    [self updateLogWithString:logMsg];
+    return NO;
+}
 
+#pragma mark - Data Point Retreival
 // Data Point Retreival: A Classifier would probably want to use this, or the uploader
 - (NSArray *)storedLocationPoints {
     NSFetchRequest *fetchReq = [NSFetchRequest fetchRequestWithEntityName:LocationEntity];
@@ -123,7 +130,13 @@ NSString *SensorDataEntity = @"SensorData";
     return [[results retain] autorelease];
 }
 
-
+// return contents of battery log as NSString
+- (NSString *)contentsOfLog {
+    NSFileHandle *fileHandle = [MobilityLogger logFileHandle];
+    NSData *data = [fileHandle readDataToEndOfFile];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    return [string autorelease];
+}
 #pragma mark - helpers
 + (NSString *)generateRandomUUID {
     CFUUIDRef uuid = CFUUIDCreate(NULL);
@@ -135,6 +148,26 @@ NSString *SensorDataEntity = @"SensorData";
 + (unsigned long long)millisecondsSinceUnixEpoch {
     // timeIntervalSince1970 is in seconds, typdefed to double, server expects milliseconds, no decimal point
     return (unsigned long long)([[NSDate date] timeIntervalSince1970] * 1000);
+}
+
+#pragma mark - File I/O
+// CSV with utc timestamp, and battery as 0-1 float
++ (NSFileHandle *)logFileHandle {
+    NSArray *directories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [directories objectAtIndex:0];
+    NSString *logFilePath = [docDir stringByAppendingPathComponent:@"battery-log.txt"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:logFilePath] == NO) {
+        [[NSFileManager defaultManager] createFileAtPath:logFilePath contents:nil attributes:nil];
+    }
+    NSFileHandle *fh = [NSFileHandle fileHandleForUpdatingAtPath:logFilePath];
+    return [[fh retain] autorelease];
+}
+
+- (void)updateLogWithString:(NSString *)msg {
+    NSFileHandle *fileHandle = [MobilityLogger logFileHandle];
+    [fileHandle seekToEndOfFile];
+    [fileHandle writeData:[[msg stringByAppendingString:@"\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [fileHandle closeFile];
 }
 
 #pragma mark - Core Data Stack

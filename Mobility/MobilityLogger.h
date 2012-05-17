@@ -25,6 +25,9 @@
 - (BOOL) didStoreAccelerometerData:(CMAccelerometerData *)accelData;
 // store wifi data FIXME: add api for this (lower priority)
 
+
+- (BOOL) didLogCurrentBatteryLevel:(float)currentLevel;
+
 #pragma mark - API for Data Point Retreival
 // Data Point Retreival: A Classifier would probably want to use this, or the uploader
 - (NSArray *)storedLocationPoints; // return of CLLocation objects
