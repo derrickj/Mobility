@@ -80,7 +80,7 @@ NSString *SensorDataEntity = @"SensorData";
 // expects current level to be percentage, (eg 90%, not .90)
 - (BOOL) didLogCurrentBatteryLevel:(float)currentLevel {
     NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
-    NSString *logMsg = [NSString stringWithFormat:@"%f,%.2f", timestamp, currentLevel];
+    NSString *logMsg = [NSString stringWithFormat:@"%.0f,%.2f", timestamp, currentLevel];
     [self updateLogWithString:logMsg];
     return NO;
 }
