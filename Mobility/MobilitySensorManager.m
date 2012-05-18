@@ -17,7 +17,7 @@
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation {
     // store the location. (maybe add an adaptive algorithm to improve power consumption later)
-    [self.logger didStoreLocation:newLocation];
+    [self.logger didStoreLocation:newLocation withProvider:[self provider]];
 
     // grab accelerometer data while (we're running in the background)
     // need about 25 points, over 1 seconds, let's see if we can get that.
@@ -59,6 +59,26 @@
     }
 }
 
+- (NSString *)provider {
+    CLLocationAccuracy acc = locationManager.desiredAccuracy;
+    NSString *defaultBase = @"iOS-";
+    NSString *accuracy = @"";
+
+    if (acc == kCLLocationAccuracyBestForNavigation) {
+        accuracy = @"kCLLocationAccuracyBestForNavigation";
+    } else if (acc == kCLLocationAccuracyBest) {
+        accuracy = @"kCLLocationAccuracyBest";
+    } else if (acc == kCLLocationAccuracyNearestTenMeters) {
+        accuracy = @"kCLLocationAccuracyNearestTenMeters";
+    } else if (acc == kCLLocationAccuracyHundredMeters) {
+        accuracy = @"kCLLocationAccuracyHundredMeters";
+    } else if (acc == kCLLocationAccuracyKilometer) {
+        accuracy = @"kCLLocationAccuracyKilometer";
+    } else if (acc == kCLLocationAccuracyThreeKilometers){
+        accuracy = @"kCLLocationAccuracyThreeKilometers";
+    }
+    return [[[defaultBase stringByAppendingString:accuracy] retain] autorelease];
+}
 #pragma mark - Memory Management
 - (id) init {
     if (self = [super init]) {
