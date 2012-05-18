@@ -27,7 +27,8 @@
     
     // get current battery state and ask logger to save it
     // note make sure device.batteryLoggingEnable = YES;
-    [self.logger didLogCurrentBatteryLevel:[[UIDevice currentDevice] batteryLevel]];
+    [[UIDevice currentDevice] setBatteryMonitoringEnabled:YES];
+    [self.logger didLogCurrentBatteryLevel:([[UIDevice currentDevice] batteryLevel] * 100)];
     
 }
 
