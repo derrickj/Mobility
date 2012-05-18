@@ -12,7 +12,7 @@
 #import "Location+HandWrittenMethods.h"
 #import "MobilityLogger.h"
 @implementation Location (HandWrittenMethods)
-- (void)setFieldsFromCLLocation:(CLLocation *)location {
+- (void)setFieldsFromCLLocation:(CLLocation *)location withProvider:(NSString *)theProvider {
     self.uuid = [MobilityLogger generateRandomUUID]; //the ohmage server expect this to be named "id", but "id" is a keyword in Obj-C
     self.latitude = [NSNumber numberWithDouble:location.coordinate.latitude];
     self.longitude = [NSNumber numberWithDouble:location.coordinate.longitude];
@@ -21,6 +21,6 @@
     self.time = [NSNumber numberWithUnsignedLongLong:(unsigned long long)(t * 1000)]; // timeinterval is typedef'ed to double, and represents seconds. server expects integer milliseconds
     self.timezone = [[NSTimeZone systemTimeZone] name];
     self.accuracy = [NSNumber numberWithDouble:location.horizontalAccuracy];
-    self.provider = @"iOS Core Location";   
+    self.provider = theProvider;
 }
 @end

@@ -9,5 +9,5 @@
 #import "Location.h"
 #import <CoreLocation/CoreLocation.h>
 @interface Location (HandWrittenMethods)
-- (void)setFieldsFromCLLocation:(CLLocation *)location;
+- (void)setFieldsFromCLLocation:(CLLocation *)location withProvider:(NSString *)theProvider;
 @end

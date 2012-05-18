@@ -36,11 +36,11 @@ NSString *SensorDataEntity = @"SensorData";
 #pragma mark - API to callers
 // API for Storing Data
 // store location
-- (BOOL) didStoreLocation: (CLLocation *)location {
+- (BOOL) didStoreLocation: (CLLocation *)location withProvider:(NSString *)theProvider {
     // create new location object for database
     Location *l = [NSEntityDescription insertNewObjectForEntityForName:LocationEntity inManagedObjectContext:self.managedObjectContext];
     // set values
-    [l setFieldsFromCLLocation:location];
+    [l setFieldsFromCLLocation:location withProvider:theProvider];
 
     // save the managed object context (ie commit to database)
     NSError *error = nil;
@@ -49,6 +49,10 @@ NSString *SensorDataEntity = @"SensorData";
         NSLog(@"error for storing location: %@", [error localizedDescription]);
     }
     return error == nil;
+}
+// store location w/ default provider
+- (BOOL) didStoreLocation:(CLLocation *)location {
+    return [self didStoreLocation:location withProvider:@"iOS Core Location"];
 }
 // store accel data
 - (BOOL) didStoreAccelerometerData:(CMAccelerometerData *)accelData {

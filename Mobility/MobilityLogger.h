@@ -20,7 +20,8 @@
 
 #pragma mark - API for Data Point Storage
 // store location
-- (BOOL) didStoreLocation: (CLLocation *)location;
+- (BOOL) didStoreLocation:(CLLocation *)location;
+- (BOOL) didStoreLocation:(CLLocation *)location withProvider:(NSString *)theProvider;
 // store accel data
 - (BOOL) didStoreAccelerometerData:(CMAccelerometerData *)accelData;
 // store wifi data FIXME: add api for this (lower priority)
