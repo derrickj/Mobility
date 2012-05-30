@@ -21,9 +21,18 @@
 
     // grab accelerometer data while (we're running in the background)
     // need about 25 points, over 1 seconds, let's see if we can get that.
-    for (int i = 0; i < 25; i++){
-        [self.logger didStoreAccelerometerData:[motionManager accelerometerData]];
+    NSMutableArray *unfilteredAccelPoints = [[NSMutableArray alloc] initWithCapacity:40];
+    for (int i = 0; i < 40; i++){
+        [unfilteredAccelPoints addObject:[motionManager accelerometerData]];
     }
+    // filter out accel data, mobility *ONLY* wants 1 second of data, no more no less
+    NSTimeInterval lastTS = [(CMAccelerometerData *)[unfilteredAccelPoints lastObject] timestamp];
+    for (CMAccelerometerData *ad in unfilteredAccelPoints) {
+        if (lastTS - [ad timestamp] < 1.0f) {
+            [self.logger didStoreAccelerometerData:ad];
+        }
+    }
+
     
     // get current battery state and ask logger to save it
     // note make sure device.batteryLoggingEnable = YES;
@@ -87,10 +96,11 @@
         locationManager.delegate = self;
         locationManager.purpose = @"Mobility logs your location periodically to upload to an Ohmage server later";
 
-        locationManager.distanceFilter = 10;// measured in meters
-        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation;
+        //locationManager.distanceFilter = 10;// measured in meters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 
         motionManager = [[CMMotionManager alloc] init];
+        motionManager.accelerometerUpdateInterval = 0; // measured in seconds, setting 0 for fastest possible
         
         [[UIDevice currentDevice] setBatteryMonitoringEnabled:YES];
     }
